@@ -5,18 +5,18 @@ Tài khoản: User `test@eshop.com` / `Test1234!`, Admin `admin@eshop.com` / `Ad
 Mã seed: `SAVE10` (percent 10, min 300,000, 1 lần), `BIGBUY` (fixed 50,000, min 500,000), `VIP100` (fixed 100,000, min 300,000, 2 lần), `EXPIRED`.
 Ghi chú: BUG-01..06 nằm ở backend dùng chung với Web (FR-08/FR-09 của thành viên khác); báo ở đây kèm bằng chứng từ màn hình Mobile. Nên đối chiếu để tránh báo trùng khi nhóm tổng hợp.
 
-Trạng thái GitHub Issues: **chưa tạo** (chờ xác nhận). Nội dung từng issue được sinh sẵn trong `features/Mobile-FR-08-09/issues/`.
+Trạng thái GitHub Issues: **đã đăng** #29–#36 (tiêu đề có tiền tố `[Mobile FR-08/09]`, nhãn `bug`) tại https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues. Nội dung từng issue nằm trong `features/Mobile-FR-08-09/issues/`.
 
 | Bug | Tiêu đề | Mức độ | Test liên quan | Issue |
 |---|---|---|---|---|
-| BUG-01 | Mã giảm theo % tính sai: tiền giảm âm, tổng thanh toán tăng | Critical | DT-09, 25, 27, 30; BV-03, 18, 19, 20 | — |
-| BUG-02 | Tổng đơn đúng bằng ngưỡng tối thiểu bị từ chối (`>` thay vì `>=`) | Major | BV-02, BV-05 | — |
-| BUG-03 | Checkout lưu nguyên `total_amount` của client, không kiểm tra giá trị | Critical | DT-07, 30, 32, 33, 34 | — |
-| BUG-04 | Áp mã không cần đăng nhập và bỏ `user_id` là qua mặt kiểm tra lượt dùng | Major | DT-22, DT-24 | — |
-| BUG-05 | Mã giảm cố định lớn hơn tổng đơn cho tổng thanh toán âm | Major | DT-26, BV-15 | — |
-| BUG-06 | `coupon-usage` ghi lượt dùng cho mã không tồn tại | Minor | DT-36 | — |
-| BUG-07 | Mobile bỏ mất sản phẩm cuối của giỏ khi gửi yêu cầu thanh toán | Major | DT-31, BV-22 | — |
-| BUG-08 | Ô "Tổng tiền thanh toán" hiển thị số thô, không có `₫` và phân cách hàng nghìn | Minor | DT-27 | — |
+| BUG-01 | Mã giảm theo % tính sai: tiền giảm âm, tổng thanh toán tăng | Critical | DT-09, 25, 27, 30; BV-03, 18, 19, 20 | #29 |
+| BUG-02 | Tổng đơn đúng bằng ngưỡng tối thiểu bị từ chối (`>` thay vì `>=`) | Major | BV-02, BV-05 | #30 |
+| BUG-03 | Checkout lưu nguyên `total_amount` của client, không kiểm tra giá trị | Critical | DT-07, 30, 32, 33, 34 | #31 |
+| BUG-04 | Áp mã không cần đăng nhập và bỏ `user_id` là qua mặt kiểm tra lượt dùng | Major | DT-22, DT-24 | #32 |
+| BUG-05 | Mã giảm cố định lớn hơn tổng đơn cho tổng thanh toán âm | Major | DT-26, BV-15 | #33 |
+| BUG-06 | `coupon-usage` ghi lượt dùng cho mã không tồn tại | Minor | DT-36 | #34 |
+| BUG-07 | Mobile bỏ mất sản phẩm cuối của giỏ khi gửi yêu cầu thanh toán | Major | DT-31, BV-22 | #35 |
+| BUG-08 | Ô "Tổng tiền thanh toán" hiển thị số thô, không có `₫` và phân cách hàng nghìn | Minor | DT-27 | #36 |
 
 ---
 
