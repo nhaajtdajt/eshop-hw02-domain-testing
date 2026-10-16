@@ -11,8 +11,9 @@ to image links using --raw-base so screenshots render inside the issue (the file
 pushed to the repo first). It only writes files; it never calls GitHub.
 
 Create an issue afterwards (after the user has approved publishing):
-  f=issues/BUG-01.md
-  gh issue create --repo <owner>/<repo> --title "[FR-03] $(head -1 $f)" --label bug --body-file <(tail -n +3 $f)
+  f=issues/BUG-01.md; tail -n +3 $f > body.tmp
+  gh issue create --repo <owner>/<repo> --title "[FR-03] $(head -1 $f)" --label bug --body-file body.tmp
+(Do not use bash process substitution <(...) for --body-file: gh on Windows cannot open /proc/... paths.)
 """
 import argparse
 import pathlib

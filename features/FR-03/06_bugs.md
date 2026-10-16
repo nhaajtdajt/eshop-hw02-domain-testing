@@ -2,20 +2,20 @@
 
 Môi trường chung: Windows 11, Node v22.20.0, Backend `http://localhost:3000`, Web `http://localhost:5173` (trình duyệt tích hợp Claude desktop, Chromium), dữ liệu seed gốc. Ngày phát hiện: 2026-10-16. Spec = `README.md` (SRS). Mức độ: Critical > Major > Minor.
 
-Trạng thái GitHub Issues: **chưa tạo** (chờ xác nhận). Nội dung từng issue được sinh sẵn trong `features/FR-03/issues/`.
+Trạng thái GitHub Issues: **đã đăng** #1–#10 tại https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues (nhãn `bug`). Nội dung từng issue nằm trong `features/FR-03/issues/`.
 
 | Bug | Tiêu đề | Mức độ | Test liên quan | Issue |
 |---|---|---|---|---|
-| BUG-01 | OTP được sinh ra chỉ có 4 chữ số thay vì 6 | Major | DT-01, BV-08 | — |
-| BUG-02 | Form đặt lại mật khẩu từ chối mọi mật khẩu hợp lệ theo spec | Critical | DT-07, BV-10..BV-23 | — |
-| BUG-03 | API reset-password chấp nhận mật khẩu rỗng/yếu (không validate phía server) | Major | DT-16..22, BV-09, BV-24, BV-25 | — |
-| BUG-04 | Thiếu trường "Xác nhận mật khẩu mới" | Major | DT-23..25, BV-26..28 | — |
-| BUG-05 | Thiếu Step Indicator "Bước x / 2" | Minor | DT-26, DT-27 | — |
-| BUG-06 | Thiếu nút "Quay lại đăng nhập" | Minor | DT-28 | — |
-| BUG-07 | Ô email dùng `type="text"` thay vì `type="email"` | Minor | DT-29 | — |
-| BUG-08 | Trường bắt buộc không có ký hiệu `*` | Minor | DT-30 | — |
-| BUG-09 | Lỗi hiển thị bằng `alert()`, không có vùng lỗi phía trên nút submit | Minor | DT-31 | — |
-| BUG-10 | OTP không bao giờ hết hạn | Major | DT-15 | — |
+| BUG-01 | OTP được sinh ra chỉ có 4 chữ số thay vì 6 | Major | DT-01, BV-08 | #1 |
+| BUG-02 | Form đặt lại mật khẩu từ chối mọi mật khẩu hợp lệ theo spec | Critical | DT-07, BV-10..BV-23 | #2 |
+| BUG-03 | API reset-password chấp nhận mật khẩu rỗng/yếu (không validate phía server) | Major | DT-16..22, BV-09, BV-24, BV-25 | #3 |
+| BUG-04 | Thiếu trường "Xác nhận mật khẩu mới" | Major | DT-23..25, BV-26..28 | #4 |
+| BUG-05 | Thiếu Step Indicator "Bước x / 2" | Minor | DT-26, DT-27 | #5 |
+| BUG-06 | Thiếu nút "Quay lại đăng nhập" | Minor | DT-28 | #6 |
+| BUG-07 | Ô email dùng `type="text"` thay vì `type="email"` | Minor | DT-29 | #7 |
+| BUG-08 | Trường bắt buộc không có ký hiệu `*` | Minor | DT-30 | #8 |
+| BUG-09 | Lỗi hiển thị bằng `alert()`, không có vùng lỗi phía trên nút submit | Minor | DT-31 | #9 |
+| BUG-10 | OTP không bao giờ hết hạn | Major | DT-15 | #10 |
 
 ---
 
