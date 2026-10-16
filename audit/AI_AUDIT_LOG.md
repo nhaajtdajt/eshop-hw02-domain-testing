@@ -148,3 +148,24 @@ features/FR-10/01_analysis.md: spec quotes, ambiguity notes (admin cancel from s
 ~~~
 
 ---
+
+## Entry 008 — FR-10 — 02 Domain testing
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 13:59:46
+- **Human review / changes:** Đối chiếu từng ô ma trận với sơ đồ SRS (5 ô hợp lệ). Lấy expected từ spec, không từ code (ví dụ canceled→delivered phải bị từ chối dù code cho phép). Thêm nhóm 'request shape' cho status (rỗng/null/sai kiểu) và nhóm quyền theo bài học FR-03. DT-15 ghi rõ là diễn giải chặt. Thêm DT-54 để kiểm thử thông báo lỗi tiếng Việt (FR-21).
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 2 - Domain Testing), input = features/FR-10/01_analysis.md + SRS FR-10/FR-12/FR-21/SEC-03:
+Treat (current state x target state) as the main domain (5x5 = 25 classes, 5 valid and 20 invalid per the SRS diagram). Add classes for actor/permission, order existence, status value type/format, and GUI. Each invalid test violates exactly one condition; after each invalid test verify the DB state is unchanged. Expected results come from the SRS only; mark the ambiguous cell (shipping->canceled by admin) as a strict interpretation. Add class->test traceability and the layer (API / UI-Admin / UI-Web).
+~~~
+
+**AI output**
+
+~~~text
+features/FR-10/02_domain_testing.md: 25-cell state matrix, actor classes (no token, plain user on admin API, other user's order), order id classes, 5 invalid status value classes, GUI classes. 54 test cases FR10-DT-01..54 with expected results from the SRS, layer per test, traceability table, limitations (mobile excluded, shipping->canceled strict interpretation, stale-UI scenario needed for DT-54).
+~~~
+
+---
