@@ -4,21 +4,21 @@ Môi trường chung: Windows 11, Node v22.20.0, Backend `http://localhost:3000`
 Tài khoản: Admin `admin@eshop.com` / `Admin123!`, User `test@eshop.com` / `Test1234!` (từ `database.js`).
 File CSV mẫu dùng trong các bước tái hiện có header `name,price,description,imageUrl,category_id`.
 
-Trạng thái GitHub Issues: **chưa tạo** (chờ xác nhận). Nội dung từng issue được sinh sẵn trong `features/FR-16/issues/`.
+Trạng thái GitHub Issues: **đã đăng** #18–#28 (tiêu đề có tiền tố `[FR-16]`, nhãn `bug`) tại https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues. Nội dung từng issue nằm trong `features/FR-16/issues/`.
 
 | Bug | Tiêu đề | Mức độ | Test liên quan | Issue |
 |---|---|---|---|---|
-| BUG-01 | Import không rollback: dòng hợp lệ vẫn được thêm khi file có dòng lỗi | Major | DT-25..29, DT-32, DT-33, BV-15..19 | — |
-| BUG-02 | Không validate `price`: số âm, 0, chữ và rỗng đều được import | Major | DT-19..22 | — |
-| BUG-03 | Parse CSV bằng `split(",")` làm hỏng trường có nháy kép/dấu phẩy | Major | DT-02, DT-03, DT-43 | — |
-| BUG-04 | Chấp nhận file không phải `.csv` | Minor | DT-07, DT-08 | — |
-| BUG-05 | Không kiểm tra header và số trường của dòng | Major | DT-12..15, BV-05, BV-06 | — |
-| BUG-06 | API import nhận `name` toàn khoảng trắng | Minor | DT-18 | — |
-| BUG-07 | Import bỏ qua ràng buộc danh mục và độ dài tên (FR-15) | Minor | DT-23, DT-24, BV-14 | — |
-| BUG-08 | Báo cáo import gây hiểu nhầm: banner xanh "Import hoàn tất" dù có lỗi, API luôn trả HTTP 200 | Minor | DT-32, DT-33 (liên quan DT-16, 17) | — |
-| BUG-09 | API import không kiểm tra quyền Admin | Critical | DT-35 | — |
-| BUG-10 | Phần tử `null` trong `products` gây HTTP 500 lộ stack trace | Minor | DT-39 | — |
-| BUG-11 | Import ~1000 dòng bị từ chối HTTP 413 do giới hạn body 100 KB, không có thông báo rõ ràng | Minor | BV-04 | — |
+| BUG-01 | Import không rollback: dòng hợp lệ vẫn được thêm khi file có dòng lỗi | Major | DT-25..29, DT-32, DT-33, BV-15..19 | #18 |
+| BUG-02 | Không validate `price`: số âm, 0, chữ và rỗng đều được import | Major | DT-19..22 | #19 |
+| BUG-03 | Parse CSV bằng `split(",")` làm hỏng trường có nháy kép/dấu phẩy | Major | DT-02, DT-03, DT-43 | #20 |
+| BUG-04 | Chấp nhận file không phải `.csv` | Minor | DT-07, DT-08 | #21 |
+| BUG-05 | Không kiểm tra header và số trường của dòng | Major | DT-12..15, BV-05, BV-06 | #22 |
+| BUG-06 | API import nhận `name` toàn khoảng trắng | Minor | DT-18 | #23 |
+| BUG-07 | Import bỏ qua ràng buộc danh mục và độ dài tên (FR-15) | Minor | DT-23, DT-24, BV-14 | #24 |
+| BUG-08 | Báo cáo import gây hiểu nhầm: banner xanh "Import hoàn tất" dù có lỗi, API luôn trả HTTP 200 | Minor | DT-32, DT-33 (liên quan DT-16, 17) | #25 |
+| BUG-09 | API import không kiểm tra quyền Admin | Critical | DT-35 | #26 |
+| BUG-10 | Phần tử `null` trong `products` gây HTTP 500 lộ stack trace | Minor | DT-39 | #27 |
+| BUG-11 | Import ~1000 dòng bị từ chối HTTP 413 do giới hạn body 100 KB, không có thông báo rõ ràng | Minor | BV-04 | #28 |
 
 ---
 

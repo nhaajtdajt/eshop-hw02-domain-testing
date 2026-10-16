@@ -1,0 +1,11 @@
+BUG-01 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/18
+BUG-02 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/19
+BUG-03 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/20
+BUG-04 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/21
+BUG-05 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/22
+BUG-06 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/23
+BUG-07 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/24
+BUG-08 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/25
+BUG-09 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/26
+BUG-10 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/27
+BUG-11 https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues/28
