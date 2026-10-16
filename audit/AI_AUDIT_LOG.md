@@ -292,3 +292,24 @@ features/FR-16/02_domain_testing.md: classes for file (6), header (6), format (6
 ~~~
 
 ---
+
+## Entry 015 — FR-16 — 03 BVA
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:15:40
+- **Human review / changes:** Biên 'giá > 0' là biên mở nên thêm 0.01 và 1 thay vì lặp 0/-1 (đã có ở DT). Với giá trị cực trị mà SRS không nêu giới hạn thì ghi rõ là khám phá. Thêm biên kích thước request (1000 dòng) vì body-parser có giới hạn mặc định — đây là gợi ý từ hiểu biết về công cụ, cần xác nhận khi chạy. Đánh nhãn 256 ký tự là diễn giải FR-15.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 3 - BVA), input = features/FR-16/02_domain_testing.md + SRS FR-16/FR-15:
+Identify ordered quantities per the SRS: number of data rows, fields per row (n-1, n, n+1), price (open boundary at 0), name length (1, 255, 256 via FR-15), position of the invalid row in the file (first, last, N=1000), reported row numbers (header is row 1), request size. State closed/open boundaries; design 3-value tests plus extremes where the SRS gives no limit (mark them as exploratory). Do not duplicate Domain Testing cases; cross-reference them.
+~~~
+
+**AI output**
+
+~~~text
+features/FR-16/03_bva.md: boundary table for 7 quantities; 19 new tests FR16-BV-01..19 (1/2/100/1000 rows; 4 and 6 fields; price 1, 0.01, 2^31-1, 2^31, 2^63; name length 1/255/256; invalid row at N=1, N=2, N=100, N=1000; row number in the report); cross references to DT-09..11, 17, 19, 20, 25..29. 62 tests total for FR-16. Note: a 1000-row JSON payload may exceed the default 100 KB body-parser limit.
+~~~
+
+---
