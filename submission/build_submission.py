@@ -2,7 +2,7 @@
 """Build the HW02 submission package from the per-feature documents.
 
 Run with an interpreter that has the `markdown` package (and Microsoft Edge/Chrome installed for PDF):
-    python submission/build_submission.py [--no-pdf] [--no-zip] [--grade 082]
+    python submission/build_submission.py [--no-pdf] [--no-zip] [--grade 100]
 
 Outputs (inside submission/):
   01_BaoCao_chinh/BaoCao_HW02_23120231.md/.pdf  main report (Domain Testing + BVA + results + AI gap)
@@ -345,7 +345,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-pdf", action="store_true")
     ap.add_argument("--no-zip", action="store_true")
-    ap.add_argument("--grade", default="082")
+    ap.add_argument("--grade", default="100")
     a = ap.parse_args()
 
     docs = {

@@ -1,8 +1,9 @@
 # Git commit log — HW02 Domain Testing (MSSV 23120231)
 # Repo: https://github.com/nhaajtdajt/eshop-hw02-domain-testing
-# Generated: 2026-10-16 17:20:41 at HEAD adc3453 (39 commits)
+# Generated: 2026-10-16 17:54:53 at HEAD 4bb068e (40 commits)
 # Format: <hash> | <date> | <author> | <message>   (mỗi bước kiểm thử của mỗi feature có một commit: '<FR-ID>: step N - ...')
 
+4bb068e | 2026-10-16 17:27:42 +0700 | 23120231 | Refactor AI Critique and Audit Reports; update Git log and templates
 adc3453 | 2026-10-16 17:05:53 +0700 | 23120231 | Submission: add course AI templates (AI-02, AI-03, AI-05, AI-06), AI audit summary, critique and disclosure sections
 12d28ed | 2026-10-16 15:29:56 +0700 | 23120231 | Submission: refresh git commit log
 c4ed0f4 | 2026-10-16 15:29:45 +0700 | 23120231 | Submission: README, main report, bug report, AI audit report, AI critique and build script
