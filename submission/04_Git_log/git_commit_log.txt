@@ -1,0 +1,41 @@
+# Git commit log — HW02 Domain Testing (MSSV 23120231)
+# Repo: https://github.com/nhaajtdajt/eshop-hw02-domain-testing
+# Generated: 2026-10-16 15:28:59 at HEAD 0e7361b (36 commits)
+# Format: <hash> | <date> | <author> | <message>   (mỗi bước kiểm thử của mỗi feature có một commit: '<FR-ID>: step N - ...')
+
+0e7361b | 2026-10-16 14:43:12 +0700 | 23120231 | Mobile FR-08/09: record GitHub issue numbers #29-#36
+5873a5a | 2026-10-16 14:41:57 +0700 | 23120231 | skill: refine domain-testing-bva with lessons from Mobile FR-08/09
+bc393c6 | 2026-10-16 14:41:45 +0700 | 23120231 | Mobile FR-08/09: step 6 - bug report (8 bugs) and issue bodies
+0b2c85a | 2026-10-16 14:40:51 +0700 | 23120231 | Mobile FR-08/09: step 5 - AI gap analysis
+c608134 | 2026-10-16 14:40:11 +0700 | 23120231 | Mobile FR-08/09: step 4 - execute 63 tests (API script + Expo Web UI), results and evidence
+2cd8b66 | 2026-10-16 14:33:31 +0700 | 23120231 | Mobile FR-08/09: step 3 - boundary value analysis with 23 test cases
+4f018d1 | 2026-10-16 14:32:39 +0700 | 23120231 | Mobile FR-08/09: step 2 - domain testing classes and 40 test cases
+981f353 | 2026-10-16 14:31:19 +0700 | 23120231 | Mobile FR-08/09: step 1 - analysis of spec, scope boundary and spec-vs-code hypotheses
+3107b37 | 2026-10-16 14:28:31 +0700 | 23120231 | FR-16: record GitHub issue numbers #18-#28
+6dce524 | 2026-10-16 14:23:54 +0700 | 23120231 | skill: refine domain-testing-bva with lessons from FR-16
+f879bb3 | 2026-10-16 14:23:41 +0700 | 23120231 | FR-16: step 6 - bug report (11 bugs) and issue bodies
+e9ccddc | 2026-10-16 14:22:54 +0700 | 23120231 | FR-16: step 5 - AI gap analysis and exploratory file-variant checks
+719986d | 2026-10-16 14:21:49 +0700 | 23120231 | FR-16: step 4 - execute 62 tests (API script + UI), results and evidence
+80787de | 2026-10-16 14:15:41 +0700 | 23120231 | FR-16: step 3 - boundary value analysis with 19 test cases
+f7fe892 | 2026-10-16 14:14:53 +0700 | 23120231 | FR-16: step 2 - domain testing classes and 43 test cases
+ba37f97 | 2026-10-16 14:13:45 +0700 | 23120231 | FR-16: step 1 - analysis of spec, ambiguities and spec-vs-code hypotheses
+de63f48 | 2026-10-16 14:06:25 +0700 | 23120231 | FR-10: record GitHub issue numbers #11-#17
+10978d6 | 2026-10-16 14:05:28 +0700 | 23120231 | skill: refine domain-testing-bva with lessons from FR-10
+0c5d958 | 2026-10-16 14:05:13 +0700 | 23120231 | FR-10: step 6 - bug report (7 bugs) and issue bodies
+7b70009 | 2026-10-16 14:04:32 +0700 | 23120231 | FR-10: step 5 - AI gap analysis and race condition check
+68f432f | 2026-10-16 14:03:29 +0700 | 23120231 | FR-10: step 4 - execute 71 tests (API script + UI), results and evidence
+6f7ab74 | 2026-10-16 14:00:21 +0700 | 23120231 | FR-10: step 3 - boundary value analysis with 17 test cases
+bbc184a | 2026-10-16 13:59:46 +0700 | 23120231 | FR-10: step 2 - domain testing state matrix and 54 test cases
+2ff451b | 2026-10-16 13:58:59 +0700 | 23120231 | FR-10: step 1 - analysis of spec, ambiguities and spec-vs-code hypotheses
+315e0ae | 2026-10-16 13:48:02 +0700 | 23120231 | FR-03: record GitHub issue numbers #1-#10
+d6e16dd | 2026-10-16 13:37:20 +0700 | 23120231 | skill: refine domain-testing-bva with lessons from FR-03
+1a61819 | 2026-10-16 13:36:49 +0700 | 23120231 | FR-03: step 6 - bug report (10 bugs) and issue bodies
+407693a | 2026-10-16 13:35:47 +0700 | 23120231 | FR-03: step 5 - AI gap analysis and extra exploratory checks
+bec0a7f | 2026-10-16 13:33:59 +0700 | 23120231 | FR-03: step 4 - execute 60 tests (API script + UI), results and evidence
+cc6ea96 | 2026-10-16 13:26:07 +0700 | 23120231 | FR-03: step 3 - boundary value analysis with 28 test cases
+39a6ad1 | 2026-10-16 13:24:53 +0700 | 23120231 | FR-03: step 2 - domain testing classes and 32 test cases
+408ddcf | 2026-10-16 13:23:49 +0700 | 23120231 | FR-03: step 1 - analysis of spec, inputs and spec-vs-code hypotheses
+c9e46ae | 2026-10-16 13:22:27 +0700 | 23120231 | chore: add domain-testing-bva agent skill (draft v0)
+19b837e | 2026-10-16 12:32:43 +0700 | 23120231 | chore: add .gitignore for node_modules
+85af3ba | 2026-05-15 08:30:35 +0700 | ttbhanh-hcmus | first upload
+2f9bf2b | 2026-05-15 08:27:44 +0700 | Hanh Tran | Initial commit

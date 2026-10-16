@@ -496,3 +496,24 @@ features/Mobile-FR-08-09/06_bugs.md with 8 bugs: BUG-01 percent discount negativ
 ~~~
 
 ---
+
+## Entry 025 — Submission — 07 Submission package
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 15:28:58
+- **Human review / changes:** Điểm tự chấm (82) là đề xuất của AI dựa trên tiêu chí đề; sinh viên cần xác nhận và đổi tên file zip nếu khác. Họ tên và link video demo còn để trống vì AI không có thông tin/không quay được video. AI Critique do AI soạn từ chính các lỗi của phiên làm việc — sinh viên cần đọc và viết lại bằng lời của mình nếu đề yêu cầu. Đã mở PDF để kiểm tra render (bảng, ảnh, khối code).
+
+**Prompt**
+
+~~~text
+User instruction (verbatim, Vietnamese): "Tạo bộ nộp bài trong thư mục submission: README.md tổng hợp (bảng tự chấm, số liệu test), báo cáo chính (Domain Testing + BVA), AI Critique 200-300 từ, AI Audit Report, git commit log dạng text."
+Task: assemble the HW02 submission from the per-feature documents (features/*/0x_*.md), the audit log and the git history; produce Markdown + PDF reports; write the AI Critique (200-300 words) and README with a self-assessment table and test summary using only numbers taken from the feature reports.
+~~~
+
+**AI output**
+
+~~~text
+submission/README.md (self-assessment 22/22/22/11/5 = 82, test summary 256 designed / 154 pass / 102 fail / 36 bugs, limitations, no demo video yet); submission/build_submission.py (assembles 01_BaoCao_chinh, 02_BugReport with embedded screenshots, 03_AI audit report, 04_Git_log and the zip 23120231_HW02_AI_DomainTesting_082.zip; PDFs via Edge headless); 03_AI/AI_Critique_23120231.md (289 words). PDF rendering issues fixed during the build: list parsing, nested lists, fenced code inside list items.
+~~~
+
+---
