@@ -169,3 +169,24 @@ features/FR-10/02_domain_testing.md: 25-cell state matrix, actor classes (no tok
 ~~~
 
 ---
+
+## Entry 009 — FR-10 — 03 BVA
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:00:21
+- **Human review / changes:** Không bịa biên số học cho state machine: nêu rõ 4 loại biên thật sự có trong spec. Biên hủy của User và khoảng cách bước đã có ở DT nên chỉ tham chiếu chéo. ID sát biên cần dữ liệu đã reset (đơn 1..3) nên ghi điều kiện chung. Expected cho ID '1.5' và 2^63 chỉ ở mức 'không lỗi server' vì spec không nêu.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 3 - BVA), input = features/FR-10/02_domain_testing.md + SRS FR-10:
+A state machine has no numeric domain, so identify ordered quantities and boundaries that do exist per the SRS: position in the ordered state chain for user-cancel, step distance of a transition, order id range, exact-value string length of the status, number of repeats of an operation, and chain length. State closed/open boundaries and design boundary-1/boundary/boundary+1 tests. Do not duplicate Domain Testing cases; cross-reference them.
+~~~
+
+**AI output**
+
+~~~text
+features/FR-10/03_bva.md: boundary table for 6 quantities; 17 new tests FR10-BV-01..17 (order id 0,-1,1,N,N+1,'abc','1.5',2^63 on admin API; id 0 and N+1 on user cancel; 3-step chain then 4th step; cancel twice; status string confirme/confirmed/confirmedd/with leading or trailing space); cross-reference of boundaries already covered by DT-26..30, DT-49..53 (cancel boundary) and matrix cells (step distance +2, +3, -1, -2). Total 71 tests for FR-10.
+~~~
+
+---
