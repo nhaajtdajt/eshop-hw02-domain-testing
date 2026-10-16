@@ -1,0 +1,28 @@
+{
+  "note": "Raw results of the in-browser UI checks (tokens injected into localStorage; real React pages; window.alert captured).",
+  "run_date": "2026-10-16",
+  "setup": "Orders #1..#5 for test@eshop.com in states pending, confirmed, shipping, delivered, canceled (seed_ui_orders.js); order #6 created as pending for the web check.",
+  "admin_ui_buttons_by_state": {
+    "pending (#1)": ["Xác nhận", "Hủy"],
+    "confirmed (#2)": ["Giao hàng", "Hủy"],
+    "shipping (#3)": ["Hoàn thành"],
+    "delivered (#4)": [],
+    "canceled (#5)": ["Đánh dấu Đã giao"]
+  },
+  "admin_ui_stale_action_DT54": {
+    "scenario": "Admin page showed order #1 as pending; order was confirmed through the API; then 'Xác nhận' was clicked.",
+    "alert": "Lỗi: Invalid state transition from confirmed to confirmed"
+  },
+  "web_profile_cancel_button_by_state": {
+    "pending (#6)": "Hủy đơn",
+    "confirmed (#1, #2)": "Hủy đơn",
+    "shipping (#3)": "Hủy đơn",
+    "delivered (#4)": "(none)",
+    "canceled (#5)": "(none)"
+  },
+  "web_profile_click_cancel_on_shipping_order": {
+    "before": "#3 Đang giao [Hủy đơn]",
+    "alert": "Hủy đơn thành công!",
+    "after": "#3 Đã hủy"
+  }
+}

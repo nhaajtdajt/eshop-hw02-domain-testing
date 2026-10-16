@@ -190,3 +190,23 @@ features/FR-10/03_bva.md: boundary table for 6 quantities; 17 new tests FR10-BV-
 ~~~
 
 ---
+
+## Entry 010 — FR-10 — 04 Execution
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:03:29
+- **Human review / changes:** Lần chạy API đầu có 8 Fail giả (BV-01..08) do script quên token Admin: đã sửa và chạy lại toàn bộ, không giữ kết quả cũ. Đã kiểm tra chéo bằng UI thật (bấm 'Hủy đơn' trên đơn Đang giao → đơn bị hủy). Các phát hiện ngoài phạm vi (FR-11, FR-13, FR-18) chỉ ghi chú để báo thành viên liên quan.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 4 - Execution): Execute the 71 designed FR-10 tests on the real EShop. API layer via a repeatable script (HTTP; DB only to verify stored status and to reset the orders table for the id-boundary group). UI layer on Web Admin (order tab) and Web profile with real pages, tokens injected into localStorage, alert() captured. Record per test the layer, Pass/Fail, actual and bug reference; fail rule: reject must mean HTTP>=400 AND DB status unchanged. Keep evidence (script, raw JSON, screenshots). Note out-of-scope findings separately.
+~~~
+
+**AI output**
+
+~~~text
+evidence/run_api_tests.js + api_results.json (60 API checks: 56 pass / 4 fail after fixing a missing-admin-token bug in my own BV-01..08 script), seed_ui_orders.js, ui_results.json, 3+1 screenshots. 04_execution.md: 71 designed, 71 executed, 64 pass, 7 fail, 6 distinct bugs: canceled->delivered allowed (API) and admin UI button for it; user can cancel shipping orders (API) and web Profile shows the button (clicking it cancelled order #3); admin status API has no role check; UI error text in English. Out-of-scope observations: dashboard revenue doubled (FR-13), GET /api/orders/:id without token (FR-11), innerHTML address (FR-18).
+~~~
+
+---

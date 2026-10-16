@@ -1,0 +1,542 @@
+[
+  {
+    "id": "FR10-DT-01",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "pending → pending: HTTP 400 {\"error\":\"Invalid state transition from pending to pending\"}; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.149Z"
+  },
+  {
+    "id": "FR10-DT-02",
+    "layer": "API",
+    "expected": "chấp nhận → confirmed",
+    "actual": "pending → confirmed: HTTP 200 {\"message\":\"Order status updated\"}; DB status=confirmed",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.191Z"
+  },
+  {
+    "id": "FR10-DT-03",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "pending → shipping: HTTP 400 {\"error\":\"Invalid state transition from pending to shipping\"; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.221Z"
+  },
+  {
+    "id": "FR10-DT-04",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "pending → delivered: HTTP 400 {\"error\":\"Invalid state transition from pending to delivered; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.250Z"
+  },
+  {
+    "id": "FR10-DT-05",
+    "layer": "API",
+    "expected": "chấp nhận → canceled",
+    "actual": "pending → canceled: HTTP 200 {\"message\":\"Order status updated\"}; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.289Z"
+  },
+  {
+    "id": "FR10-DT-06",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "confirmed → pending: HTTP 400 {\"error\":\"Invalid state transition from confirmed to pending; DB status=confirmed",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.331Z"
+  },
+  {
+    "id": "FR10-DT-07",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "confirmed → confirmed: HTTP 400 {\"error\":\"Invalid state transition from confirmed to confirm; DB status=confirmed",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.378Z"
+  },
+  {
+    "id": "FR10-DT-08",
+    "layer": "API",
+    "expected": "chấp nhận → shipping",
+    "actual": "confirmed → shipping: HTTP 200 {\"message\":\"Order status updated\"}; DB status=shipping",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.431Z"
+  },
+  {
+    "id": "FR10-DT-09",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "confirmed → delivered: HTTP 400 {\"error\":\"Invalid state transition from confirmed to deliver; DB status=confirmed",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.469Z"
+  },
+  {
+    "id": "FR10-DT-10",
+    "layer": "API",
+    "expected": "chấp nhận → canceled",
+    "actual": "confirmed → canceled: HTTP 200 {\"message\":\"Order status updated\"}; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.524Z"
+  },
+  {
+    "id": "FR10-DT-11",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "shipping → pending: HTTP 400 {\"error\":\"Invalid state transition from shipping to pending\"; DB status=shipping",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.580Z"
+  },
+  {
+    "id": "FR10-DT-12",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "shipping → confirmed: HTTP 400 {\"error\":\"Invalid state transition from shipping to confirme; DB status=shipping",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.633Z"
+  },
+  {
+    "id": "FR10-DT-13",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "shipping → shipping: HTTP 400 {\"error\":\"Invalid state transition from shipping to shipping; DB status=shipping",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.694Z"
+  },
+  {
+    "id": "FR10-DT-14",
+    "layer": "API",
+    "expected": "chấp nhận → delivered",
+    "actual": "shipping → delivered: HTTP 200 {\"message\":\"Order status updated\"}; DB status=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.766Z"
+  },
+  {
+    "id": "FR10-DT-15",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "shipping → canceled: HTTP 400 {\"error\":\"Invalid state transition from shipping to canceled; DB status=shipping",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.840Z"
+  },
+  {
+    "id": "FR10-DT-16",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "delivered → pending: HTTP 400 {\"error\":\"Invalid state transition from delivered to pending; DB status=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:16.926Z"
+  },
+  {
+    "id": "FR10-DT-17",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "delivered → confirmed: HTTP 400 {\"error\":\"Invalid state transition from delivered to confirm; DB status=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.012Z"
+  },
+  {
+    "id": "FR10-DT-18",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "delivered → shipping: HTTP 400 {\"error\":\"Invalid state transition from delivered to shippin; DB status=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.082Z"
+  },
+  {
+    "id": "FR10-DT-19",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "delivered → delivered: HTTP 400 {\"error\":\"Invalid state transition from delivered to deliver; DB status=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.156Z"
+  },
+  {
+    "id": "FR10-DT-20",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "delivered → canceled: HTTP 400 {\"error\":\"Invalid state transition from delivered to cancele; DB status=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.242Z"
+  },
+  {
+    "id": "FR10-DT-21",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "canceled → pending: HTTP 400 {\"error\":\"Invalid state transition from canceled to pending\"; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.289Z"
+  },
+  {
+    "id": "FR10-DT-22",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "canceled → confirmed: HTTP 400 {\"error\":\"Invalid state transition from canceled to confirme; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.331Z"
+  },
+  {
+    "id": "FR10-DT-23",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "canceled → shipping: HTTP 400 {\"error\":\"Invalid state transition from canceled to shipping; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.371Z"
+  },
+  {
+    "id": "FR10-DT-24",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "canceled → delivered: HTTP 200 {\"message\":\"Order status updated\"}; DB status=delivered",
+    "result": "Fail",
+    "note": "hệ thống CHO PHÉP chuyển không hợp lệ",
+    "at": "2026-10-16T07:01:17.415Z"
+  },
+  {
+    "id": "FR10-DT-25",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "canceled → canceled: HTTP 400 {\"error\":\"Invalid state transition from canceled to canceled; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.449Z"
+  },
+  {
+    "id": "FR10-DT-26",
+    "layer": "API",
+    "expected": "chấp nhận → canceled",
+    "actual": "User hủy đơn pending: HTTP 200 {\"message\":\"Order canceled successfully\"}; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.483Z"
+  },
+  {
+    "id": "FR10-DT-27",
+    "layer": "API",
+    "expected": "chấp nhận → canceled",
+    "actual": "User hủy đơn confirmed: HTTP 200 {\"message\":\"Order canceled successfully\"}; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.536Z"
+  },
+  {
+    "id": "FR10-DT-28",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "User hủy đơn shipping: HTTP 200 {\"message\":\"Order canceled successfully\"}; DB status=canceled",
+    "result": "Fail",
+    "note": "User hủy được đơn không được phép hủy",
+    "at": "2026-10-16T07:01:17.595Z"
+  },
+  {
+    "id": "FR10-DT-29",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "User hủy đơn delivered: HTTP 400 {\"error\":\"Cannot cancel this order.\"}; DB status=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.679Z"
+  },
+  {
+    "id": "FR10-DT-30",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "User hủy đơn canceled: HTTP 400 {\"error\":\"Cannot cancel this order.\"}; DB status=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.716Z"
+  },
+  {
+    "id": "FR10-DT-31",
+    "layer": "API",
+    "expected": "401, không đổi",
+    "actual": "Admin API không token: HTTP 401 {\"error\":\"Unauthorized\"}; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.733Z"
+  },
+  {
+    "id": "FR10-DT-32",
+    "layer": "API",
+    "expected": "401, không đổi",
+    "actual": "Hủy không token: HTTP 401 {\"error\":\"Unauthorized\"}; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.735Z"
+  },
+  {
+    "id": "FR10-DT-33",
+    "layer": "API",
+    "expected": "từ chối (403), không đổi",
+    "actual": "User thường gọi Admin API: HTTP 200 {\"message\":\"Order status updated\"}; DB status=confirmed",
+    "result": "Fail",
+    "note": "thiếu kiểm tra role=admin (FR-12/SEC-03)",
+    "at": "2026-10-16T07:01:17.752Z"
+  },
+  {
+    "id": "FR10-DT-34",
+    "layer": "API",
+    "expected": "từ chối, đơn của A không đổi",
+    "actual": "User B hủy đơn của A: HTTP 404 {\"error\":\"Order not found\"}; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.787Z"
+  },
+  {
+    "id": "FR10-DT-35",
+    "layer": "API",
+    "expected": "404",
+    "actual": "Admin API id không tồn tại: HTTP 404 {\"error\":\"Order not found\"}; DB status=-",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.791Z"
+  },
+  {
+    "id": "FR10-DT-36",
+    "layer": "API",
+    "expected": "404",
+    "actual": "User hủy id không tồn tại: HTTP 404 {\"error\":\"Order not found\"}; DB status=-",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.798Z"
+  },
+  {
+    "id": "FR10-DT-37",
+    "layer": "API",
+    "expected": "từ chối (400), không đổi",
+    "actual": "status=\"\" (rỗng): HTTP 400 {\"error\":\"Invalid state transition from pending to \"}; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.818Z"
+  },
+  {
+    "id": "FR10-DT-38",
+    "layer": "API",
+    "expected": "từ chối (400), không đổi",
+    "actual": "status=\"refunded\" (chuỗi lạ): HTTP 400 {\"error\":\"Invalid state transition from pending to refunded\"; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.860Z"
+  },
+  {
+    "id": "FR10-DT-39",
+    "layer": "API",
+    "expected": "từ chối (400), không đổi",
+    "actual": "status=\"CONFIRMED\" (sai hoa/thường): HTTP 400 {\"error\":\"Invalid state transition from pending to CONFIRMED; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.905Z"
+  },
+  {
+    "id": "FR10-DT-40",
+    "layer": "API",
+    "expected": "từ chối (400), không đổi",
+    "actual": "status=null (null): HTTP 400 {\"error\":\"Invalid state transition from pending to null\"}; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.948Z"
+  },
+  {
+    "id": "FR10-DT-41",
+    "layer": "API",
+    "expected": "từ chối (400), không đổi",
+    "actual": "status=123 (số): HTTP 400 {\"error\":\"Invalid state transition from pending to 123\"}; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:17.990Z"
+  },
+  {
+    "id": "FR10-DT-42",
+    "layer": "API",
+    "expected": "3 bước thành công; sau delivered mọi chuyển tiếp bị từ chối",
+    "actual": "tiến: confirmed:200, shipping:200, delivered:200; sau delivered: pending:400, confirmed:400, shipping:400, delivered:400, canceled:400; DB=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.106Z"
+  },
+  {
+    "id": "FR10-DT-43",
+    "layer": "API",
+    "expected": "hủy thành công; canceled→delivered bị từ chối",
+    "actual": "hủy: HTTP 200 (DB=canceled); sau đó canceled→delivered: HTTP 200, DB=delivered",
+    "result": "Fail",
+    "note": "đơn đã hủy bị chuyển thành delivered",
+    "at": "2026-10-16T07:01:18.192Z"
+  },
+  {
+    "id": "FR10-BV-01",
+    "layer": "API",
+    "expected": "404, không đơn nào đổi",
+    "actual": "id=0: HTTP 404 {\"error\":\"Order not found\"}; statuses=pending/pending/pending (ids=1,2,3)",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.275Z"
+  },
+  {
+    "id": "FR10-BV-02",
+    "layer": "API",
+    "expected": "404, không đơn nào đổi",
+    "actual": "id=-1: HTTP 404 {\"error\":\"Order not found\"}; statuses=pending/pending/pending (ids=1,2,3)",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.281Z"
+  },
+  {
+    "id": "FR10-BV-03",
+    "layer": "API",
+    "expected": "chấp nhận → confirmed",
+    "actual": "id=1: HTTP 200 {\"message\":\"Order status updated\"}; statuses=confirmed/pending/pending (ids=1,2,3)",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.298Z"
+  },
+  {
+    "id": "FR10-BV-04",
+    "layer": "API",
+    "expected": "chấp nhận → confirmed",
+    "actual": "id=3: HTTP 200 {\"message\":\"Order status updated\"}; statuses=confirmed/pending/confirmed (ids=1,2,3)",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.313Z"
+  },
+  {
+    "id": "FR10-BV-05",
+    "layer": "API",
+    "expected": "404, không đơn nào đổi",
+    "actual": "id=4: HTTP 404 {\"error\":\"Order not found\"}; statuses=confirmed/pending/confirmed (ids=1,2,3)",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.317Z"
+  },
+  {
+    "id": "FR10-BV-06",
+    "layer": "API",
+    "expected": "404, không đơn nào đổi",
+    "actual": "id=abc: HTTP 404 {\"error\":\"Order not found\"}; statuses=confirmed/pending/confirmed (ids=1,2,3)",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.323Z"
+  },
+  {
+    "id": "FR10-BV-07",
+    "layer": "API",
+    "expected": "404, không đơn nào đổi",
+    "actual": "id=1.5: HTTP 404 {\"error\":\"Order not found\"}; statuses=confirmed/pending/confirmed (ids=1,2,3)",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.425Z"
+  },
+  {
+    "id": "FR10-BV-08",
+    "layer": "API",
+    "expected": "404, không đơn nào đổi",
+    "actual": "id=9223372036854775808: HTTP 404 {\"error\":\"Order not found\"}; statuses=confirmed/pending/confirmed (ids=1,2,3)",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.436Z"
+  },
+  {
+    "id": "FR10-BV-09",
+    "layer": "API",
+    "expected": "404",
+    "actual": "User hủy id=0: HTTP 404 {\"error\":\"Order not found\"}; DB status=-",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.445Z"
+  },
+  {
+    "id": "FR10-BV-10",
+    "layer": "API",
+    "expected": "404",
+    "actual": "User hủy id=N+1: HTTP 404 {\"error\":\"Order not found\"}; DB status=-",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.452Z"
+  },
+  {
+    "id": "FR10-BV-11",
+    "layer": "API",
+    "expected": "3 bước đầu thành công, bước 4 bị từ chối",
+    "actual": "3 bước: 200,200,200; bước 4 (→canceled): HTTP 400; DB=delivered",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.540Z"
+  },
+  {
+    "id": "FR10-BV-12",
+    "layer": "API",
+    "expected": "lần 1 thành công, lần 2 bị từ chối",
+    "actual": "lần 1: HTTP 200; lần 2: HTTP 400 {\"error\":\"Cannot cancel this order.\"}; DB=canceled",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.585Z"
+  },
+  {
+    "id": "FR10-BV-13",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "status=\"confirme\": HTTP 400 {\"error\":\"Invalid state transition from pending to confirme\"; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.606Z"
+  },
+  {
+    "id": "FR10-BV-14",
+    "layer": "API",
+    "expected": "chấp nhận → confirmed",
+    "actual": "status=\"confirmed\": HTTP 200 {\"message\":\"Order status updated\"}; DB status=confirmed",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.638Z"
+  },
+  {
+    "id": "FR10-BV-15",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "status=\"confirmedd\": HTTP 400 {\"error\":\"Invalid state transition from pending to confirmed; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.658Z"
+  },
+  {
+    "id": "FR10-BV-16",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "status=\" confirmed\": HTTP 400 {\"error\":\"Invalid state transition from pending to  confirme; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.681Z"
+  },
+  {
+    "id": "FR10-BV-17",
+    "layer": "API",
+    "expected": "từ chối, không đổi",
+    "actual": "status=\"confirmed \": HTTP 400 {\"error\":\"Invalid state transition from pending to confirmed; DB status=pending",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:01:18.705Z"
+  }
+]
