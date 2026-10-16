@@ -230,3 +230,23 @@ Step prompt per skill (Step 5 - AI gap analysis): Compare the first-pass design 
 ~~~
 
 ---
+
+## Entry 012 — FR-10 — 06 Bug report
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:05:12
+- **Human review / changes:** Mức độ nghiêm trọng là đánh giá của AI (đặc biệt BUG-05 Critical, BUG-07 Minor vì xác suất thấp) — người dùng cần xác nhận. BUG-05 chạm FR-12 (không ai trong nhóm nhận feature này) nên tôi báo ở đây nhưng chỉ cho endpoint đổi trạng thái đơn. Chưa đăng issue lên GitHub.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 6 - Bug report): Group the 7 failing FR-10 tests and the race finding by root cause and write one bug per root cause with title, feature, severity, steps, expected (SRS line numbers), actual, evidence and code location. Keep out-of-scope findings (FR-11, FR-13, FR-18) in a separate list. Generate GitHub issue body files but do NOT publish them.
+~~~
+
+**AI output**
+
+~~~text
+features/FR-10/06_bugs.md with 7 bugs: BUG-01 canceled->delivered allowed (API, Major); BUG-02 admin UI 'Đánh dấu Đã giao' button on canceled orders (Minor); BUG-03 user can cancel shipping orders via API (Major); BUG-04 web profile shows cancel button for shipping and it works (Major); BUG-05 admin status API has no role check (Critical); BUG-06 English error text on admin UI (Minor); BUG-07 race condition revives canceled order (Minor, 1/60). Out-of-scope observations list. Issue bodies generated in features/FR-10/issues (7 files). Not published.
+~~~
+
+---
