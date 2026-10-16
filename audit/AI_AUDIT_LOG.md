@@ -210,3 +210,23 @@ evidence/run_api_tests.js + api_results.json (60 API checks: 56 pass / 4 fail af
 ~~~
 
 ---
+
+## Entry 011 — FR-10 — 05 AI gap analysis
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:04:32
+- **Human review / changes:** AI tự đánh giá chính mình nên có nguy cơ thiên vị; bám bằng chứng cụ thể (race_result.json, mã 401 hàng loạt). X-01 là xác suất (1/60), ghi rõ không tái hiện mọi lần. Người dùng cần đọc lại và phản biện các nhóm nguyên nhân trước khi nộp.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 5 - AI gap analysis): Compare the first-pass design from steps 1-3 with the final set after execution for FR-10. List what the AI missed or got wrong, how it was found, cause group (Prompt / Tool limitation / Feature complexity), explanation and a skill change. Also add concurrency and exploratory checks justified by the SRS invariant "canceled/delivered are final". State what the AI got right.
+~~~
+
+**AI output**
+
+~~~text
+05_ai_gap.md with 6 gaps: G1 race condition between admin confirm and user cancel (X-01: 60 parallel pairs, 1 order revived from canceled to confirmed); G2 same rule differs across UIs (web shows cancel for shipping); G3 out-of-scope findings (FR-13 revenue x2, FR-11 order readable without token, FR-18 innerHTML); G4 ambiguous 'only Admin can act' at shipping; G5 my own script bug (missing admin token -> 8 false fails); G6 mobile and remaining admin buttons not covered. Added X-01 + race_test.js + race_result.json to evidence and 04_execution.md (BUG-07 candidate).
+~~~
+
+---

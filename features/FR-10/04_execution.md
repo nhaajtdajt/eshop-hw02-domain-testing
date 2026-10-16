@@ -71,7 +71,12 @@ Phát hiện khi chạy, thuộc feature của thành viên khác trong nhóm; g
 - **FR-18 (Quản lý đơn Admin):** địa chỉ giao hàng hiển thị bằng `dangerouslySetInnerHTML` (`App.jsx:799-804`), chưa kiểm chứng XSS vì ngoài phạm vi.
 - Thông báo lỗi API cho chuyển không hợp lệ là tiếng Anh ("Invalid state transition from X to Y"); SRS chỉ yêu cầu "thông báo phù hợp", nên chỉ tính lỗi khi hiển thị thẳng trên UI (BUG-06).
 
-## 3. Thống kê FR-10
+## 3. Test khám phá thêm sau khi chạy (`added-after-run`)
+| ID | Kịch bản | Kết quả |
+|---|---|---|
+| X-01 | 60 lần: tạo đơn `pending`, gửi **đồng thời** "Admin xác nhận" và "User hủy" (`evidence/race_test.js`) | Cả hai request đều trả 200 ở cả 60 lần. Trạng thái cuối: `canceled` 59 lần, **`confirmed` 1 lần** → có lúc đơn đã bị User hủy rồi bị Admin "xác nhận" đè lên (đơn hủy bị hồi sinh), vi phạm "`canceled` là trạng thái kết thúc". Nguyên nhân: kiểm tra trạng thái (`SELECT`) và cập nhật (`UPDATE`) là hai bước riêng, `UPDATE` không có điều kiện theo trạng thái cũ (`server.js:528-562`). Ghi nhận là **BUG-07** (xác suất thấp). Kết quả thô: `evidence/race_result.json`. |
+
+## 4. Thống kê FR-10
 
 | Hạng mục | Số lượng |
 |---|---|
@@ -80,4 +85,5 @@ Phát hiện khi chạy, thuộc feature của thành viên khác trong nhóm; g
 | Pass | 64 (DT: 47, BV: 17) |
 | Fail | 7 (DT: 7, BV: 0) |
 | Chưa thực thi | 0 |
-| Bug phân biệt (nguyên nhân gốc) | **6** (BUG-01 … BUG-06, xem `06_bugs.md`) |
+| Bug phân biệt (nguyên nhân gốc) | **7** (BUG-01 … BUG-07, xem `06_bugs.md`) |
+| Test khám phá thêm | 1 (X-01) — phát hiện BUG-07 |
