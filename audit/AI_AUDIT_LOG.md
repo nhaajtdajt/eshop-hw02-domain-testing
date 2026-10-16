@@ -373,3 +373,24 @@ features/FR-16/06_bugs.md with 11 bugs: BUG-01 no rollback (Major); BUG-02 price
 ~~~
 
 ---
+
+## Entry 019 — Mobile-FR-08/09 — 01 Analysis
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:31:18
+- **Human review / changes:** Phân định ranh giới với FR-08/FR-09 bản Web của thành viên khác (backend dùng chung). Ghi rõ giới hạn môi trường: không có thiết bị/emulator, Alert không hiện trên web, API_URL phải sửa tạm để chạy. H8/H9/H12 'có vẻ đúng', H4/H6/H10/H11/H16 'cần thử'. Mọi giả thuyết 'chưa kiểm chứng' đến Bước 4. (Người dùng chưa đọc lại tại thời điểm ghi log.)
+
+**Prompt**
+
+~~~text
+User instruction (verbatim, Vietnamese): "Làm Mobile FR-08/09 (thanh toán và coupon trên mobile) bằng skill domain-testing-bva từ Bước 1, ghi audit log và commit từng bước."
+Step prompt per skill (Step 1 - Analysis): Given SRS README.md FR-08 (lines 102-108), FR-09 (110-135), FR-20, FR-21, SEC-02, backend/server.js checkout/apply-coupon/coupon-usage and frontend-mobile/App.js cart, checkout and coupon code: quote the spec, list inputs/preconditions/outputs, note ambiguities and the boundary with the web features owned by other members, and build a Spec vs Code hypotheses table. Spec is the oracle; code only locates suspected deviations.
+~~~
+
+**AI output**
+
+~~~text
+features/Mobile-FR-08-09/01_analysis.md: spec quotes, ambiguities (error precedence, negative total, rounding), input/output table, 16 hypotheses: H1 percent formula total*(1-value) gives negative discount (SAVE10); H2 threshold uses > instead of >=; H3 apply-coupon needs no token and skips C5 when user_id missing; H5 checkout trusts client total_amount; H6 mobile sends items.slice(0,-1) dropping the last item; H10 min check before expiry; H11 fixed discount > total gives negative; H13 no shipping_address sent; H14 hard-coded LAN IP in API_URL; H15 cart quantity input adds 1 (FR-20, out of scope). Test environment notes: Expo web via react-native-web, Alert.alert not visible on web, no emulator.
+~~~
+
+---
