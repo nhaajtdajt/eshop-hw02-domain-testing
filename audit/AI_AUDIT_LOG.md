@@ -476,3 +476,23 @@ Step prompt per skill (Step 5 - AI gap analysis): Compare the first-pass design 
 ~~~
 
 ---
+
+## Entry 024 — Mobile-FR-08/09 — 06 Bug report
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:41:44
+- **Human review / changes:** Mức độ nghiêm trọng là đánh giá của AI (BUG-01/03 Critical vì ảnh hưởng tiền; BUG-05 là diễn giải) — người dùng cần xác nhận. BUG-01..06 là lỗi backend dùng chung với Web của thành viên khác nên có nguy cơ trùng khi nhóm tổng hợp; đã ghi chú. Chưa đăng issue lên GitHub. Chưa kiểm tra trên thiết bị thật.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 6 - Bug report): Group the 21 failing Mobile FR-08/09 tests by root cause and write one bug per root cause (title, feature, severity, steps, expected with SRS line numbers, actual, evidence, code location). Mark the backend bugs shared with the Web features of other members. Keep observations and untested items in a separate list. Generate GitHub-issue body files but do NOT publish them.
+~~~
+
+**AI output**
+
+~~~text
+features/Mobile-FR-08-09/06_bugs.md with 8 bugs: BUG-01 percent discount negative (Critical); BUG-02 threshold uses > (Major); BUG-03 checkout trusts client total_amount (Critical); BUG-04 apply-coupon needs no token and no user_id bypasses C5 (Major); BUG-05 fixed discount > total gives negative final (Major, interpretation); BUG-06 coupon-usage accepts unknown coupon_id (Minor); BUG-07 mobile drops the last cart item (Major); BUG-08 total field not formatted (Minor). Observations/untested list. 8 issue bodies generated in features/Mobile-FR-08-09/issues. Not published. Also corrected the admin-password claim in 05_ai_gap.md after verifying admin123 returns 401.
+~~~
+
+---
