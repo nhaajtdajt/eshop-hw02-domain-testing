@@ -127,3 +127,24 @@ Step prompt per skill (Step 6 - Bug report): Group the 40 failing FR-03 tests by
 ~~~
 
 ---
+
+## Entry 007 — FR-10 — 01 Analysis
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 13:58:59
+- **Human review / changes:** Đối chiếu sơ đồ spec với code từng nhánh if (server.js:537-551). Ghi rõ điểm mơ hồ 'chỉ Admin mới có thể thao tác' ở shipping và chọn diễn giải chặt. Loại Mobile khỏi phạm vi vì là feature của thành viên khác. H14/H15 là ngoài phạm vi nên chỉ ghi chú. Mọi giả thuyết còn 'chưa kiểm chứng' đến Bước 4. (Người dùng chưa đọc lại tại thời điểm ghi log.)
+
+**Prompt**
+
+~~~text
+User instruction (verbatim, Vietnamese): "Làm FR-10 (máy trạng thái đơn hàng) bằng skill domain-testing-bva từ Bước 1, ghi audit log và commit từng bước."
+Step prompt per skill (Step 1 - Analysis): Given SRS README.md FR-10 (lines 141-162), FR-12, FR-18, FR-21, SEC-03, api_specification.md 4.6 and 6.2, backend/server.js:100-110, 311-349, 525-568, frontend-admin App.jsx order tab and frontend-web Profile.jsx cancel button: quote the spec, list inputs/preconditions/outputs, note ambiguities, and build a Spec vs Code hypotheses table. Spec is the oracle; code only locates suspected deviations.
+~~~
+
+**AI output**
+
+~~~text
+features/FR-10/01_analysis.md: spec quotes, ambiguity notes (admin cancel from shipping not in diagram), input/output table, 15 Spec-vs-Code hypotheses: H1 canceled->delivered allowed (server.js:550) and admin UI button for it (App.jsx:862); H3 user can cancel shipping orders (server.js:329); H4 web Profile shows cancel for shipping (Profile.jsx:200); H5 admin status API has no role check (SEC-03/FR-12); H7/H13 English error text shown in UI; H14/H15 are out-of-scope notes (FR-11/FR-18). Mobile cancel excluded (belongs to another member). Test design hints: 25-cell state matrix, boundary kinds for a non-numeric domain.
+~~~
+
+---
