@@ -415,3 +415,24 @@ features/Mobile-FR-08-09/02_domain_testing.md: class tables (checkout/auth/cart/
 ~~~
 
 ---
+
+## Entry 021 — Mobile-FR-08/09 — 03 BVA
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:33:31
+- **Human review / changes:** Phân biệt biên đóng (>= ngưỡng) và biên mở (hạn dùng, lượt dùng) theo đúng spec chứ không theo code (code dùng > nên BV-02/BV-05 sẽ lộ lỗi). Thêm biên cart.length 1/2 vì thấy rẽ nhánh cart.length > 1 trong App.js (gợi ý từ code, expected vẫn theo spec 'đầy đủ sản phẩm'). Ghi chú múi giờ cho test hạn dùng.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 3 - BVA), input = features/Mobile-FR-08-09/02_domain_testing.md + SRS FR-08/FR-09:
+Identify ordered quantities with boundaries per the SRS: order total vs min_order_amount (closed, >=) for SAVE10 and BIGBUY; current time vs expired_at (open, strictly before) at date and datetime granularity; used count vs max_uses_per_user (open, <); total vs fixed discount D; 100% and fractional percent discounts; cart length 1 vs 2 (the code branches on cart.length > 1); extreme code length. Design boundary-1/boundary/boundary+1 tests, cross-reference Domain Testing cases and mark interpretations and timezone caveats.
+~~~
+
+**AI output**
+
+~~~text
+features/Mobile-FR-08-09/03_bva.md: boundary table (8 quantities); 23 new tests MFR-BV-01..23 (thresholds 299,999/300,000/300,001 and 499,999/500,000/500,001; expired_at yesterday/today/tomorrow and now-1min/+1min; VIP100 used 0/1/2; fixed D total D-1/D/D+1; 100% and 10% of 9/10; cart length 1 and 2; 1000-char code); cross references; 63 tests total. Notes on timezone and interpretations.
+~~~
+
+---
