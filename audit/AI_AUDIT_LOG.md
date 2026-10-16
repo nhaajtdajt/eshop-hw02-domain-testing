@@ -353,3 +353,23 @@ Step prompt per skill (Step 5 - AI gap analysis): Compare the first-pass design 
 ~~~
 
 ---
+
+## Entry 018 — FR-16 — 06 Bug report
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:23:41
+- **Human review / changes:** Mức độ nghiêm trọng là đánh giá của AI (BUG-09 Critical vì phân quyền; BUG-01/02/03/05 Major vì mất/sai dữ liệu) — người dùng cần xác nhận. BUG-07 dựa trên diễn giải FR-15. BUG-11: thông báo UI suy ra từ code, chưa quan sát. BUG-09 và BUG-05 của FR-10 cùng gốc lỗi thiếu kiểm tra role (SEC-03) — báo riêng theo từng endpoint. Chưa đăng issue.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 6 - Bug report): Group the 34 failing FR-16 tests by root cause and write one bug per root cause (title, feature, severity, steps with sample CSV, expected with SRS line numbers, actual, evidence paths, code location). Keep real-world observations and untested ideas in a separate list. Generate GitHub-issue body files but do NOT publish them.
+~~~
+
+**AI output**
+
+~~~text
+features/FR-16/06_bugs.md with 11 bugs: BUG-01 no rollback (Major); BUG-02 price not validated (Major); BUG-03 split(',') breaks quoted CSV fields (Major); BUG-04 non-.csv accepted (Minor); BUG-05 header/field count not validated (Major); BUG-06 API accepts whitespace-only name (Minor); BUG-07 FR-15 constraints ignored (Minor, interpretation); BUG-08 misleading green banner and HTTP 200 (Minor); BUG-09 no admin role check (Critical); BUG-10 [null] gives HTTP 500 with stack trace (Minor); BUG-11 1000 rows hit 413 (Minor). Observations list incl. untested duplicates and thousand separators. Issue bodies generated in features/FR-16/issues (11 files). Not published.
+~~~
+
+---
