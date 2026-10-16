@@ -46,3 +46,24 @@ Produced features/FR-03/02_domain_testing.md: classes email(1 valid+5 invalid), 
 ~~~
 
 ---
+
+## Entry 003 — FR-03 — 03 BVA
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 13:26:07
+- **Human review / changes:** Biên lấy từ spec: OTP 5/6/7 (không phải 3/4/5 theo code). Đánh dấu rõ 'không có biên' cho thời hạn OTP và độ dài email thay vì tự bịa số. Thêm biên giá trị số 0 đầu và hàng xóm ASCII của tập ký tự đặc biệt (BV-24/25). BV-12 (256 ký tự) chỉ là khám phá vì spec không nêu tối đa. Chuyển OTP boundary sang API + token seed vì UI không đặt được OTP 6 số.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 3 - BVA), input = features/FR-03/02_domain_testing.md + SRS FR-03/FR-01/SEC-07:
+Identify every ordered input/quantity with a numeric or length boundary according to the SRS (not the code), state whether each boundary is closed or open (>= vs >), and design 3-value tests (boundary-1, boundary, boundary+1) plus useful extremes. Mark quantities where the SRS gives no number (OTP lifetime, email length) instead of inventing boundaries. Avoid duplicating Domain Testing cases; cross-reference them.
+~~~
+
+**AI output**
+
+~~~text
+Produced features/FR-03/03_bva.md: boundary table (OTP length 5/6/7 + extremes, leading-zero OTP, generated OTP length, password length 7/8/9/256, min count per character class, membership of the 7 special characters + ASCII neighbours '+' and '"', confirm-password n-1/n/n+1, OTP usage count). 28 test cases FR03-BV-01..28; cross-references to DT cases; 60 designed tests total for FR-03; limits: no numeric boundary for OTP lifetime/email length; OTP boundary tests need seeded token because real system issues 4-digit OTP.
+~~~
+
+---
