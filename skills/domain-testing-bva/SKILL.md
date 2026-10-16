@@ -33,7 +33,7 @@ Tạo thư mục nếu chưa có. Mẫu từng file nằm ở `references/templa
 ## Quy trình
 
 ### Bước 0 — Chuẩn bị ngữ cảnh
-Đọc `references/eshop-context.md` (cổng, tài khoản, cách gọi API, vị trí spec). Chạy được backend và frontend liên quan trước khi bắt đầu, vì test case phải thực thi được.
+Đọc `references/eshop-context.md` (cổng, tài khoản, cách gọi API, vị trí spec). Chạy được backend và frontend liên quan trước khi bắt đầu, vì test case phải thực thi được. Với ứng dụng Mobile: thử chạy bằng Expo Web (cài `react-dom`, `react-native-web`, `@expo/metro-runtime` bằng `npm install --no-save` để không đổi `package.json`) và đổi **tạm** `API_URL` cứng sang `localhost`; sau khi test phải `git checkout` file đó và xác nhận `git status` sạch. Ghi rõ trong báo cáo các giới hạn của môi trường (không có thiết bị/emulator, `Alert.alert` không hiện trên web) và những gì vì vậy chưa test được.
 
 ### Bước 1 — Phân tích feature (`01_analysis.md`)
 1. Trích nguyên văn yêu cầu của feature từ SRS (`README.md`) và API spec. Ghi số dòng/mục để truy vết.
@@ -71,6 +71,8 @@ Tạo thư mục nếu chưa có. Mẫu từng file nằm ở `references/templa
 - **Chạy UI trong trình duyệt tích hợp**: gán giá trị input theo cách React nhận biết (`Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set` rồi `dispatchEvent(new Event('input',{bubbles:true}))`), bấm nút submit thật, và thay `window.alert` bằng bộ ghi để lấy nội dung hộp thoại. Muốn thử validate phía client mà không đổi dữ liệu, dùng một giá trị phụ sai (ví dụ OTP sai) để server từ chối: nếu thấy lỗi của server nghĩa là validate client đã cho qua.
 - **UI bất đồng bộ** (đọc file, gọi API rồi mới render): chờ tới khi nội dung giao diện **khớp đầu vào vừa đưa** rồi mới thao tác, không chờ thời gian cố định; sau khi chạy, so dữ liệu thực tế sinh ra với đầu vào (tên sản phẩm lạ nghĩa là test đang chạy trên dữ liệu cũ).
 - **Test "từ chối" phải được từ chối vì đúng lý do**: nếu kết quả Pass có thể đến từ một lỗi khác (ví dụ HTTP 413 do payload quá lớn che mất kiểm tra rollback), kiểm tra mã lỗi và nội dung phản hồi. Với test từ chối cũng đọc thông báo hiển thị cho người dùng, không chỉ trạng thái dữ liệu.
+- **Thời gian có múi giờ**: chuỗi ngày giờ không có "Z" bị server hiểu là giờ địa phương; dựng `expired_at` kiểu ngày giờ từ giờ địa phương, còn kiểu ngày (`YYYY-MM-DD`) được hiểu là 00:00 UTC. Ghi múi giờ máy test khi kết luận biên thời gian.
+- **Dựng dữ liệu theo tên, kiểm tra đầu vào trước khi thao tác**: dựng giỏ/đối tượng test bằng tên (không dùng chỉ số mảng), xóa sạch dữ liệu của kịch bản trước, và đọc lại màn hình/giỏ trước khi bấm bước cuối; tổng tiền hay danh sách lệch dự kiến là dấu hiệu dữ liệu sót.
 - **Request đối chứng**: trước mỗi nhóm test mới, chạy một request hợp lệ làm đối chứng. Nhiều test cùng báo một mã lỗi lạ (ví dụ cả nhóm 401) gần như chắc chắn là lỗi script, không phải lỗi hệ thống.
 - **Đồng thời (race)**: với feature có trạng thái cuối/bất biến, chạy N lần (≥50) hai thao tác xung đột cùng lúc và kiểm tra bất biến ở trạng thái cuối. Lỗi kiểu "kiểm tra rồi mới ghi" không lộ ra ở test tuần tự và có thể chỉ xuất hiện vài lần trong N.
 - **Cô lập trạng thái**: test dài (có chờ) dùng user/dữ liệu riêng mà các test khác không reset. Truy vấn kiểm chứng phải loại trừ dữ liệu của test khác (một lần DT-06 báo Fail giả vì lẫn token của test khác).
@@ -122,5 +124,6 @@ Skill này được chỉnh dần khi làm các feature thật. Sau mỗi featur
 | FR-03 | Số test Fail (40) lớn hơn nhiều số bug (10) vì hai lớp UI/API cùng ràng buộc | Thêm kết quả theo lớp và cột Bug ở Bước 4; thêm `make_issue_bodies.py` ở Bước 6 |
 | FR-10 | State machine: miền là cặp trạng thái nên test đủ ma trận; cùng quy tắc sai ở UI này nhưng đúng ở UI khác; có race condition chỉ lộ khi chạy đồng thời | Thêm ma trận đầy đủ, bảng điểm thao tác × trạng thái và test đồng thời ở Bước 2 và 4 |
 | FR-10 | Script test sao chép thiếu token làm 8 test Fail giả | Thêm quy tắc "request đối chứng" ở Bước 4 |
+| Mobile FR-08/09 | Phải kiểm tra chạy được ứng dụng trước khi thiết kế (IP LAN cứng, thiếu gói web); `Alert` không quan sát được; múi giờ trong test hạn dùng; giỏ sót dữ liệu giữa các kịch bản; nhiều test Fail do một công thức sai | Thêm hướng dẫn chạy Mobile ở Bước 0; quy tắc múi giờ và dựng dữ liệu theo tên ở Bước 4 |
 | FR-16 | Feature nhận file: bỏ sót biến thể file thực tế (dấu `;`, BOM, dòng trống); UI bất đồng bộ làm một lần chạy sai; 413 che mất kiểm tra rollback; banner xanh khi có lỗi | Thêm nhóm "đầu vào do công cụ khác sinh ra" ở Bước 2, quy tắc chờ UI bất đồng bộ và "từ chối đúng lý do" ở Bước 4 |
 | FR-10 | Thấy lỗi của feature lân cận (FR-11, FR-13, FR-18) khi chạy | Thêm mục "Quan sát ngoài phạm vi" ở Bước 6 |
