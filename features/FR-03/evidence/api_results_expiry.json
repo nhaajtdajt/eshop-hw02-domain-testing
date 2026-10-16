@@ -1,0 +1,11 @@
+[
+  {
+    "id": "FR03-DT-15",
+    "layer": "API",
+    "expected": "OTP cũ phải bị từ chối (có thời hạn)",
+    "actual": "after 5.5 min: HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "SRS không nêu thời hạn cụ thể; đây là kiểm tra khám phá",
+    "at": "2026-10-16T06:33:21.702Z"
+  }
+]

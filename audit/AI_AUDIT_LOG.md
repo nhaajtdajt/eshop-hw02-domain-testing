@@ -67,3 +67,23 @@ Produced features/FR-03/03_bva.md: boundary table (OTP length 5/6/7 + extremes, 
 ~~~
 
 ---
+
+## Entry 004 — FR-03 — 04 Execution
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 13:33:59
+- **Human review / changes:** Sửa 2 lỗi do chính test của mình: (1) DT-06 báo Fail giả vì user C (test hết hạn) có reset_token → loại user C khỏi truy vấn rồi chạy lại; (2) lần chạy DT-15 đầu tiên chỉ chờ ~12 giây nên Fail không có ý nghĩa → bỏ và chạy lại với 5,5 phút. Kết quả test mật khẩu trên UI dùng OTP sai để không làm đổi dữ liệu. Tất cả kết quả đã đối chiếu với spec, không dùng code làm expected.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 4 - Execution): Execute the 60 designed FR-03 test cases on the real EShop. API layer: write a repeatable script (HTTP requests to localhost:3000, DB used only to reset/seed state and to verify whether the password changed). UI layer: drive the real /forgot-password form in the browser (real React handlers, alert() captured). Record per test: UI result, API result, overall Pass/Fail (Fail if any layer deviates from the SRS), actual behaviour, bug reference. Save evidence (script, raw JSON, screenshots) under features/FR-03/evidence.
+~~~
+
+**AI output**
+
+~~~text
+evidence/run_api_tests.js + api_results.json (45 API checks: 33 pass / 12 fail); UI harness run in browser; 04_execution.md with per-test table. Totals: 60 designed, 60 executed, 20 pass, 40 fail, 10 distinct bugs. Key actuals: OTP is 4 digits (e.g. 4543); UI password regex rejects every spec-valid password and only accepts one with a space; backend reset-password accepts empty/weak passwords; no confirm field, no step indicator, no 'back to login', email type=text, no '*', errors via alert(); OTP still valid after 5.5 min; 4 extra exploratory API checks found nothing new. The first expiry run (12 s after issuing) was discarded as invalid and rerun with a 5.5 minute wait.
+~~~
+
+---

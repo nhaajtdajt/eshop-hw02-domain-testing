@@ -1,0 +1,407 @@
+[
+  {
+    "id": "FR03-DT-01",
+    "layer": "API",
+    "expected": "Sinh OTP 6 chữ số",
+    "actual": "HTTP 200, resetToken=8528 (4 chữ số)",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:38.146Z"
+  },
+  {
+    "id": "FR03-DT-02",
+    "layer": "API",
+    "expected": "Từ chối, không cấp OTP",
+    "actual": "HTTP 404 {\"error\":\"User not found\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.157Z"
+  },
+  {
+    "id": "FR03-DT-03",
+    "layer": "API",
+    "expected": "Từ chối, không cấp OTP",
+    "actual": "HTTP 404 {\"error\":\"User not found\"}",
+    "result": "Pass",
+    "note": "Thông báo là 'User not found', không nêu sai định dạng",
+    "at": "2026-10-16T06:27:38.164Z"
+  },
+  {
+    "id": "FR03-DT-04",
+    "layer": "API",
+    "expected": "Từ chối, không cấp OTP",
+    "actual": "HTTP 404 {\"error\":\"User not found\"}",
+    "result": "Pass",
+    "note": "404 cho biết email không tồn tại (lộ danh sách email)",
+    "at": "2026-10-16T06:27:38.170Z"
+  },
+  {
+    "id": "FR03-DT-05",
+    "layer": "API",
+    "expected": "Từ chối, không cấp OTP",
+    "actual": "HTTP 404 {\"error\":\"User not found\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.175Z"
+  },
+  {
+    "id": "FR03-DT-06",
+    "layer": "API",
+    "expected": "Không cấp OTP cho user nào, không lỗi server",
+    "actual": "users có reset_token sau injection: 0",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.193Z"
+  },
+  {
+    "id": "FR03-DT-08",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "otp=\"\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.212Z"
+  },
+  {
+    "id": "FR03-DT-09",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "otp=\"12345\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.241Z"
+  },
+  {
+    "id": "FR03-DT-10",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "otp=\"1234567\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.271Z"
+  },
+  {
+    "id": "FR03-DT-11",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "otp=\"12a45!\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.300Z"
+  },
+  {
+    "id": "FR03-DT-12",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "otp=\"9962\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.337Z"
+  },
+  {
+    "id": "FR03-DT-13",
+    "layer": "API",
+    "expected": "OTP của email khác bị từ chối",
+    "actual": "OTP của B dùng cho A → HTTP 400, password unchanged; pw B unchanged=true",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.391Z"
+  },
+  {
+    "id": "FR03-DT-14",
+    "layer": "API",
+    "expected": "Lần 2 bị từ chối (OTP vô hiệu sau khi dùng)",
+    "actual": "lần 1: HTTP 200, password CHANGED; lần 2: HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.455Z"
+  },
+  {
+    "id": "FR03-DT-16",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:38.499Z"
+  },
+  {
+    "id": "FR03-DT-17",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"Ab1!xyz\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:38.545Z"
+  },
+  {
+    "id": "FR03-DT-18",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"newpass1!\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:38.594Z"
+  },
+  {
+    "id": "FR03-DT-19",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"NEWPASS1!\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:38.636Z"
+  },
+  {
+    "id": "FR03-DT-20",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"Newpass!!\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:38.680Z"
+  },
+  {
+    "id": "FR03-DT-21",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"Newpass12\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:38.721Z"
+  },
+  {
+    "id": "FR03-DT-22",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"Newpass1#\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "diễn giải chặt",
+    "at": "2026-10-16T06:27:38.765Z"
+  },
+  {
+    "id": "FR03-BV-01",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "seed=123456, submit=\"\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.800Z"
+  },
+  {
+    "id": "FR03-BV-02",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "seed=123456, submit=\"1\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.828Z"
+  },
+  {
+    "id": "FR03-BV-03",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "seed=123456, submit=\"12345\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.860Z"
+  },
+  {
+    "id": "FR03-BV-04",
+    "layer": "API",
+    "expected": "Chấp nhận",
+    "actual": "seed=123456, submit=\"123456\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.902Z"
+  },
+  {
+    "id": "FR03-BV-05",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "seed=123456, submit=\"1234567\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.928Z"
+  },
+  {
+    "id": "FR03-BV-06",
+    "layer": "API",
+    "expected": "Chấp nhận",
+    "actual": "seed=012345, submit=\"012345\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.965Z"
+  },
+  {
+    "id": "FR03-BV-07",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "seed=012345, submit=\"12345\" → HTTP 400, password unchanged",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:38.993Z"
+  },
+  {
+    "id": "FR03-BV-08",
+    "layer": "API",
+    "expected": "Cả 20 OTP đều đúng 6 chữ số",
+    "actual": "độ dài quan sát: 4; min=1250, max=8952",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:39.283Z"
+  },
+  {
+    "id": "FR03-BV-09",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"Ab1!xyz\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T06:27:39.320Z"
+  },
+  {
+    "id": "FR03-BV-10",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Ab1!wxyz\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.355Z"
+  },
+  {
+    "id": "FR03-BV-11",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Ab1!vwxyz\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.393Z"
+  },
+  {
+    "id": "FR03-BV-12",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=<256 ký tự> → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.431Z"
+  },
+  {
+    "id": "FR03-BV-13",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"newpass1!A\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.475Z"
+  },
+  {
+    "id": "FR03-BV-14",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"NEWPASS1!a\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.522Z"
+  },
+  {
+    "id": "FR03-BV-15",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass!1\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.569Z"
+  },
+  {
+    "id": "FR03-BV-16",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass12!\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.619Z"
+  },
+  {
+    "id": "FR03-BV-17",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass1@\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.839Z"
+  },
+  {
+    "id": "FR03-BV-18",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass1$\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.893Z"
+  },
+  {
+    "id": "FR03-BV-19",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass1!\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:39.950Z"
+  },
+  {
+    "id": "FR03-BV-20",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass1%\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:40.006Z"
+  },
+  {
+    "id": "FR03-BV-21",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass1*\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:40.056Z"
+  },
+  {
+    "id": "FR03-BV-22",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass1?\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:40.103Z"
+  },
+  {
+    "id": "FR03-BV-23",
+    "layer": "API",
+    "expected": "Chấp nhận, mật khẩu đổi",
+    "actual": "newPassword=\"Newpass1&\" → HTTP 200, password CHANGED",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T06:27:40.148Z"
+  },
+  {
+    "id": "FR03-BV-24",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"Newpass1+\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "diễn giải chặt",
+    "at": "2026-10-16T06:27:40.190Z"
+  },
+  {
+    "id": "FR03-BV-25",
+    "layer": "API",
+    "expected": "Từ chối, mật khẩu không đổi",
+    "actual": "newPassword=\"Newpass1\\\"\" → HTTP 200, password CHANGED",
+    "result": "Fail",
+    "note": "diễn giải chặt",
+    "at": "2026-10-16T06:27:40.230Z"
+  }
+]
