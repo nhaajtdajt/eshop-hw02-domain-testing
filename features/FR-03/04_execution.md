@@ -94,13 +94,16 @@ Ký hiệu: ✔ = đúng spec, ✘ = lệch spec, — = không áp dụng/không
 - Lần chạy đầu tiên của test này (sau ~12 giây) bị **loại bỏ** vì quá sớm, không đại diện cho "đã hết hạn" (xem `05_ai_gap.md`, bài học về kiểm tra tiền đề thời gian). Log: `evidence/expiry_run.log`.
 
 ## 4. Test khám phá thêm sau khi chạy (`added-after-run`)
-Mục đích: khoanh vùng lỗi xử lý đầu vào của API. Không có bug mới.
+Mục đích: khoanh vùng lỗi xử lý đầu vào của API (X-01..X-04) và kiểm tra các thuộc tính ngoài miền một input (X-05..X-07, được thêm khi làm gap analysis). Không có bug mới; X-05 và X-06 ghi là quan sát.
 | ID | Request | Kết quả |
 |---|---|---|
 | X-01 | `forgot-password` không có `email` | 404 "User not found", server vẫn sống |
 | X-02 | `reset-password` không có `resetToken` | 400 "Invalid token or email" |
 | X-03 | `resetToken` là object | 400, server vẫn sống |
 | X-04 | `resetToken: null` | 400 |
+| X-05 | 300 lần đoán OTP sai liên tiếp (`reset-password`) | 300 × HTTP 400, không khóa/làm chậm (quan sát: không giới hạn số lần đoán) |
+| X-06 | `forgot-password` với `TEST@ESHOP.COM` | 404: email phân biệt hoa/thường (SRS không nêu) |
+| X-07 | Xin OTP hai lần rồi dùng OTP cũ | 400: OTP cũ bị vô hiệu khi cấp OTP mới (hợp lý) |
 
 ## 5. Thống kê FR-03
 
@@ -112,6 +115,6 @@ Mục đích: khoanh vùng lỗi xử lý đầu vào của API. Không có bug 
 | Fail | 40 (DT: 19, BV: 21) |
 | Chưa thực thi | 0 |
 | Bug phân biệt (nguyên nhân gốc) | **10** (BUG-01 … BUG-10, xem `06_bugs.md`) |
-| Test khám phá thêm | 4 (X-01..X-04), không có bug |
+| Test khám phá thêm | 7 (X-01..X-07), không có bug mới (X-05, X-06 là quan sát) |
 
 Nhiều test Fail cùng một nguyên nhân gốc (ví dụ 14 test BV từ BV-10 đến BV-23 đều do BUG-02), nên số bug nhỏ hơn nhiều so với số test Fail.

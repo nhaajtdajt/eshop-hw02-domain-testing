@@ -87,3 +87,23 @@ evidence/run_api_tests.js + api_results.json (45 API checks: 33 pass / 12 fail);
 ~~~
 
 ---
+
+## Entry 005 — FR-03 — 05 AI gap analysis
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 13:35:46
+- **Human review / changes:** Phân tích gap do cùng AI tự đánh giá nên có nguy cơ thiên vị; đã bám bằng chứng cụ thể (X-05..X-07, log DT-06/DT-15) thay vì nhận xét chung. Người dùng cần đọc lại và bổ sung/phản biện các nhóm nguyên nhân trước khi nộp.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 5 - AI gap analysis): Compare the first-pass test design produced by the AI in steps 1-3 with the final set after execution. List every test case, bug or check that the AI missed or got wrong, how it was discovered, which cause group applies (Prompt / Tool limitation / Feature complexity), why, and how the skill or prompt should change. Be specific; also say what the AI got right.
+~~~
+
+**AI output**
+
+~~~text
+05_ai_gap.md with 7 gaps: G1 request-shape tests missing; G2 no OTP guess limiting (300 wrong guesses all 400); G3 email normalisation (case-sensitive); G4 password-with-whitespace class not derived from code hint; G5 over-specific expected for DT-03 and lenient grading; G6 many failing tests share one root cause (40 failing tests vs 10 bugs); G7 test-script errors (shared state false fail on DT-06; premature DT-15). Added exploratory X-05..X-07 to 04_execution.md. Lessons to feed back into the skill.
+~~~
+
+---

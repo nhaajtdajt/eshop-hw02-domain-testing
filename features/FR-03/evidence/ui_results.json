@@ -1,0 +1,51 @@
+{
+  "note": "Raw output of the in-browser UI harness (real React handlers on /forgot-password; window.alert captured). Password tests used a WRONG OTP (0000) so that no data changed: 'UI_REJECT' = alert 'Mật khẩu quá yếu...' (client regex rejected); 'UI_ACCEPT' would be the alert 'Mã OTP không đúng...' (request sent).",
+  "run_date": "2026-10-16",
+  "step1_dom": {
+    "inputs": [{"type": "text", "required": true}],
+    "buttons": ["Lấy mã OTP"],
+    "has_step_indicator": false,
+    "has_back_to_login": false,
+    "labels_have_asterisk": false
+  },
+  "step2_dom": {
+    "inputs": [{"type": "text", "label": "Mã OTP (4 số)"}, {"type": "password", "label": "Mật khẩu mới"}],
+    "buttons": ["Đặt lại mật khẩu", "← Quay lại"],
+    "has_step_indicator": false,
+    "has_confirm_password_field": false,
+    "otp_banner_example": "Mã OTP của bạn là: 4543"
+  },
+  "step1_cases": {
+    "DT-02 (empty)": "BLOCKED by HTML required, no request",
+    "DT-03 testeshop.com": "alert: Lỗi: User not found",
+    "DT-04 nobody@eshop.com": "alert: Lỗi: User not found",
+    "DT-05 '   '": "alert: Lỗi: User not found",
+    "DT-06 SQL text": "alert: Lỗi: User not found"
+  },
+  "password_cases_ui_result": {
+    "DT-16 ''": "BLOCKED by HTML required",
+    "DT-17 Ab1!xyz": "UI_REJECT",
+    "DT-18 newpass1!": "UI_REJECT",
+    "DT-19 NEWPASS1!": "UI_REJECT",
+    "DT-20 Newpass!!": "UI_REJECT",
+    "DT-21 Newpass12": "UI_REJECT",
+    "DT-22 Newpass1#": "UI_REJECT",
+    "BV-09 Ab1!xyz": "UI_REJECT",
+    "BV-10 Ab1!wxyz (valid per SRS)": "UI_REJECT",
+    "BV-11 Ab1!vwxyz (valid per SRS)": "UI_REJECT",
+    "BV-12 256 chars (valid per SRS)": "UI_REJECT",
+    "BV-13..BV-16 exactly-one-of-each (valid per SRS)": "UI_REJECT",
+    "BV-17..BV-23 each allowed special char (valid per SRS)": "UI_REJECT",
+    "BV-24 Newpass1+": "UI_REJECT",
+    "BV-25 Newpass1\"": "UI_REJECT",
+    "extra: 'New pass1' (contains a space, no special char)": "UI_ACCEPT; with the real OTP the reset succeeded, redirected to /login; login with 'New pass1' OK, old password rejected"
+  },
+  "otp_cases_ui_result": {
+    "DT-08 / BV-01 empty": "BLOCKED by HTML required",
+    "DT-09 / BV-03 12345": "alert: Mã OTP không đúng hoặc có lỗi xảy ra.",
+    "DT-10 / BV-05 1234567": "alert: Mã OTP không đúng hoặc có lỗi xảy ra.",
+    "DT-11 12a45!": "alert: Mã OTP không đúng hoặc có lỗi xảy ra.",
+    "DT-12 wrong 4-digit": "alert: Mã OTP không đúng hoặc có lỗi xảy ra.",
+    "BV-02 1": "alert: Mã OTP không đúng hoặc có lỗi xảy ra."
+  }
+}
