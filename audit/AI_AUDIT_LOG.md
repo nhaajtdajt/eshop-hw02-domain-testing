@@ -271,3 +271,24 @@ features/FR-16/01_analysis.md: spec quotes, ambiguities (report wording when rol
 ~~~
 
 ---
+
+## Entry 014 — FR-16 — 02 Domain testing
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:14:53
+- **Human review / changes:** Áp dụng bài học FR-03/FR-10: thêm nhóm request shape (thiếu/null/sai kiểu), nhóm quyền, và tiêu chí 'rejected' = số SP trong DB không đổi. Gắn nhãn 'diễn giải' cho test category_id vì SRS FR-16 không nêu. Giữ expected theo spec dù code có thể chấp nhận (ví dụ price âm).
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 2 - Domain Testing), input = features/FR-16/01_analysis.md + SRS FR-16/FR-12/FR-15/SEC-03:
+Partition the domain in tiers: file (extension, empty, header-only), header (order, missing, extra, case, absent), field format (RFC 4180 quoting, escaped quotes, CRLF, UTF-8, unclosed quote), per-row content (name, price, category_id), atomicity (position and count of bad rows), authorization and request shape for the API, report and UI behaviour. Each invalid test contains exactly one defect; the pass criterion for 'rejected' is that the product count in the DB is unchanged. Mark which layer runs each test: UI (real CSV file, client-side parsing) or API (JSON array). Expected values from the SRS only; mark interpretations (category existence).
+~~~
+
+**AI output**
+
+~~~text
+features/FR-16/02_domain_testing.md: classes for file (6), header (6), format (6), name (3), price (6), category (3), atomicity (6), auth/shape (7), report/UI (6); 43 test cases FR16-DT-01..43 with expected from the SRS, layer per test, traceability table; limitations: category existence is an interpretation of FR-15, decimal price handling, client-side parsing means format tests are UI-only.
+~~~
+
+---
