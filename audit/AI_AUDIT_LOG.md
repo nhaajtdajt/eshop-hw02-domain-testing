@@ -250,3 +250,24 @@ features/FR-10/06_bugs.md with 7 bugs: BUG-01 canceled->delivered allowed (API, 
 ~~~
 
 ---
+
+## Entry 013 — FR-16 — 01 Analysis
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:13:45
+- **Human review / changes:** Phát hiện parse CSV nằm ở client nên cần hai lớp test (UI file thật + API mảng JSON). Ghi rõ điểm mơ hồ về 'báo cáo' khi rollback và giá thập phân. H8/H9/H10/H11 để 'cần thử' vì chưa chắc từ code. Mọi giả thuyết 'chưa kiểm chứng' đến Bước 4. (Người dùng chưa đọc lại tại thời điểm ghi log.)
+
+**Prompt**
+
+~~~text
+User instruction (verbatim, Vietnamese): "Làm FR-16 (import sản phẩm từ CSV) bằng skill domain-testing-bva từ Bước 1, ghi audit log và commit từng bước."
+Step prompt per skill (Step 1 - Analysis): Given SRS README.md FR-16 (lines 200-211), FR-12, FR-15, FR-21, SEC-03, api_specification.md 6.3, backend/server.js:198-241 and frontend-admin/src/App.jsx CSV import section: quote the spec, list inputs/preconditions/outputs, note ambiguities, and build a Spec vs Code hypotheses table. Spec is the oracle; code only locates suspected deviations. Note that CSV parsing happens client-side so both UI and API layers matter.
+~~~
+
+**AI output**
+
+~~~text
+features/FR-16/01_analysis.md: spec quotes, ambiguities (report wording when rolled back, positive decimal price, category existence), input/output table, 13 hypotheses: H1 no transaction/rollback; H2 price not validated; H3 split(',') breaks quoted commas; H4 no .csv check (input has no accept); H5 header not validated and aliases accepted; H6 report is only 'x/y' and always HTTP 200; H7 no admin role check; H8 whitespace-only name accepted by API; H9 category_id defaults to 1; H10 empty/header-only; H11 row numbering; H12 template link ok; H13 XSS out of scope. Design hints: three-tier domain (file, format, row content), atomicity tested by DB count before/after, UI tests for client parsing and API tests for server validation.
+~~~
+
+---
