@@ -394,3 +394,24 @@ features/Mobile-FR-08-09/01_analysis.md: spec quotes, ambiguities (error precede
 ~~~
 
 ---
+
+## Entry 020 — Mobile-FR-08/09 — 02 Domain testing
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:32:39
+- **Human review / changes:** Tính expected bằng công thức SRS (10% của 400,000 = 40,000) chứ không dùng số hệ thống trả. Áp bài học: nhóm request shape, UI và API riêng, ghi rõ giới hạn môi trường. Gắn nhãn diễn giải cho chữ thường/khoảng trắng và fixed > tổng. Thêm DT-24 (bỏ user_id để né C5) và DT-31 (bắt request để kiểm tra danh sách món gửi lên) từ giả thuyết H3/H6.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 2 - Domain Testing), input = features/Mobile-FR-08-09/01_analysis.md + SRS FR-08/FR-09:
+Partition the domain: checkout preconditions (login, cart, total integrity), coupon conditions C1..C5 as a decision table (each invalid test violates exactly one), discount type and calculation (percent integer/fractional, fixed smaller/larger than total), API request shapes, and mobile UI behaviours. Expected amounts computed from the SRS formula, never from the system output. Mark each test UI (Expo Web) or API and note environment limits (no emulator, Alert.alert invisible on web).
+~~~
+
+**AI output**
+
+~~~text
+features/Mobile-FR-08-09/02_domain_testing.md: class tables (checkout/auth/cart/total, coupon C1..C5, type/calculation, request shape, UI); 40 test cases MFR-DT-01..40 with SRS-derived expected values (e.g. SAVE10 on 400,000 -> discount 40,000, final 360,000), layer per test, traceability table, assumptions (interpretations: lowercase code, fixed discount > total).
+~~~
+
+---
