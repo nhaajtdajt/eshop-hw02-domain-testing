@@ -1,0 +1,353 @@
+[
+  {
+    "id": "FR16-DT-06",
+    "layer": "API",
+    "expected": "chấp nhận 1 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:42.206Z"
+  },
+  {
+    "id": "FR16-DT-17",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 0/1 sản phẩm được thêm\",\"inserted\":0,\"errors\":[\"Hàng 2: Thiếu tên sản phẩm\"]}; DB +0",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:42.217Z"
+  },
+  {
+    "id": "FR16-DT-18",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:42.246Z"
+  },
+  {
+    "id": "FR16-DT-19",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:42.278Z"
+  },
+  {
+    "id": "FR16-DT-20",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:42.310Z"
+  },
+  {
+    "id": "FR16-DT-21",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:42.344Z"
+  },
+  {
+    "id": "FR16-DT-22",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:42.376Z"
+  },
+  {
+    "id": "FR16-DT-23",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "diễn giải FR-15; hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:42.407Z"
+  },
+  {
+    "id": "FR16-DT-24",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "diễn giải FR-15; hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:42.439Z"
+  },
+  {
+    "id": "FR16-DT-25",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 3/3 sản phẩm được thêm\",\"inserted\":3,\"errors\":[]}; DB +3",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 3 SP",
+    "at": "2026-10-16T07:16:42.504Z"
+  },
+  {
+    "id": "FR16-DT-26",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 3/3 sản phẩm được thêm\",\"inserted\":3,\"errors\":[]}; DB +3",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 3 SP",
+    "at": "2026-10-16T07:16:42.563Z"
+  },
+  {
+    "id": "FR16-DT-27",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 3/3 sản phẩm được thêm\",\"inserted\":3,\"errors\":[]}; DB +3",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 3 SP",
+    "at": "2026-10-16T07:16:42.619Z"
+  },
+  {
+    "id": "FR16-DT-28",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 5/5 sản phẩm được thêm\",\"inserted\":5,\"errors\":[]}; DB +5",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 5 SP",
+    "at": "2026-10-16T07:16:42.701Z"
+  },
+  {
+    "id": "FR16-DT-29",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 3/3 sản phẩm được thêm\",\"inserted\":3,\"errors\":[]}; DB +3",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 3 SP",
+    "at": "2026-10-16T07:16:42.757Z"
+  },
+  {
+    "id": "FR16-DT-30",
+    "layer": "API",
+    "expected": "chấp nhận 5 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 5/5 sản phẩm được thêm\",\"inserted\":5,\"errors\":[]}; DB +5",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:42.833Z"
+  },
+  {
+    "id": "FR16-DT-33",
+    "layer": "API",
+    "expected": "phản hồi thất bại (4xx hoặc inserted=0), không có SP nào được thêm",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 3/3 sản phẩm được thêm\",\"inserted\":3,\"errors\":[]}; DB +3",
+    "result": "Fail",
+    "note": "trả HTTP 200 'Import hoàn tất' dù có dòng lỗi",
+    "at": "2026-10-16T07:16:42.886Z"
+  },
+  {
+    "id": "FR16-DT-34",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 401 {\"error\":\"Unauthorized\"}; DB +0",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:42.892Z"
+  },
+  {
+    "id": "FR16-DT-35",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "thiếu kiểm tra role=admin; hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:42.924Z"
+  },
+  {
+    "id": "FR16-DT-36",
+    "layer": "API",
+    "expected": "400, server vẫn sống",
+    "actual": "HTTP 400 {\"error\":\"Không có dữ liệu để import\"}; DB +0",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:42.930Z"
+  },
+  {
+    "id": "FR16-DT-37",
+    "layer": "API",
+    "expected": "400, server vẫn sống",
+    "actual": "HTTP 400 {\"error\":\"Không có dữ liệu để import\"}; DB +0",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:42.936Z"
+  },
+  {
+    "id": "FR16-DT-38",
+    "layer": "API",
+    "expected": "400, server vẫn sống",
+    "actual": "HTTP 400 {\"error\":\"Không có dữ liệu để import\"}; DB +0",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:42.943Z"
+  },
+  {
+    "id": "FR16-DT-39",
+    "layer": "API",
+    "expected": "400, server vẫn sống",
+    "actual": "HTTP 500 <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</tit; DB +0",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T07:16:42.949Z"
+  },
+  {
+    "id": "FR16-BV-01",
+    "layer": "API",
+    "expected": "chấp nhận 1 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:42.985Z"
+  },
+  {
+    "id": "FR16-BV-02",
+    "layer": "API",
+    "expected": "chấp nhận 2 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 2/2 sản phẩm được thêm\",\"inserted\":2,\"errors\":[]}; DB +2",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:43.025Z"
+  },
+  {
+    "id": "FR16-BV-03",
+    "layer": "API",
+    "expected": "chấp nhận 100 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 100/100 sản phẩm được thêm\",\"inserted\":100,\"errors\":[]}; DB +100",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:44.426Z"
+  },
+  {
+    "id": "FR16-BV-04",
+    "layer": "API",
+    "expected": "chấp nhận 1000 SP (hoặc từ chối rõ ràng, DB không đổi)",
+    "actual": "payload ~131 KB; HTTP 413 <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</tit; DB +0",
+    "result": "Fail",
+    "note": "bị giới hạn body 100 KB, thông báo không phải JSON lỗi rõ ràng",
+    "at": "2026-10-16T07:16:44.438Z"
+  },
+  {
+    "id": "FR16-BV-07",
+    "layer": "API",
+    "expected": "chấp nhận 1 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:44.466Z"
+  },
+  {
+    "id": "FR16-BV-08",
+    "layer": "API",
+    "expected": "chấp nhận 1 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:44.495Z"
+  },
+  {
+    "id": "FR16-BV-09",
+    "layer": "API",
+    "expected": "chấp nhận 1 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:44.523Z"
+  },
+  {
+    "id": "FR16-BV-10",
+    "layer": "API",
+    "expected": "chấp nhận 1 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:44.552Z"
+  },
+  {
+    "id": "FR16-BV-11",
+    "layer": "API",
+    "expected": "không lỗi server; lưu đúng hoặc từ chối rõ ràng",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1; giá lưu=9223372036854776000",
+    "result": "Pass",
+    "note": "SRS không nêu giới hạn; ghi nhận giá lưu",
+    "at": "2026-10-16T07:16:44.580Z"
+  },
+  {
+    "id": "FR16-BV-12",
+    "layer": "API",
+    "expected": "chấp nhận 1 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:44.605Z"
+  },
+  {
+    "id": "FR16-BV-13",
+    "layer": "API",
+    "expected": "chấp nhận 1 SP",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:16:44.631Z"
+  },
+  {
+    "id": "FR16-BV-14",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "diễn giải FR-15; hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:44.658Z"
+  },
+  {
+    "id": "FR16-BV-15",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}; DB +1",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 1 SP",
+    "at": "2026-10-16T07:16:44.687Z"
+  },
+  {
+    "id": "FR16-BV-16",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 2/2 sản phẩm được thêm\",\"inserted\":2,\"errors\":[]}; DB +2",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 2 SP",
+    "at": "2026-10-16T07:16:44.734Z"
+  },
+  {
+    "id": "FR16-BV-17",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 100/100 sản phẩm được thêm\",\"inserted\":100,\"errors\":[]}; DB +100",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 100 SP",
+    "at": "2026-10-16T07:16:45.979Z"
+  },
+  {
+    "id": "FR16-BV-18",
+    "layer": "API",
+    "expected": "từ chối, DB không đổi (dòng 1000 lỗi, 999 dòng hợp lệ cũng không được lưu)",
+    "actual": "payload ~80 KB; HTTP 200 {\"message\":\"Import hoàn tất: 1000/1000 sản phẩm được thêm\",\"inserted\":1000,\"errors\":[]}; DB +1000",
+    "result": "Fail",
+    "note": "hệ thống đã thêm 1000 SP",
+    "at": "2026-10-16T07:16:58.580Z"
+  },
+  {
+    "id": "FR16-BV-19",
+    "layer": "API",
+    "expected": "báo lỗi dòng 2 và không thêm SP nào",
+    "actual": "HTTP 200 {\"message\":\"Import hoàn tất: 2/3 sản phẩm được thêm\",\"inserted\":2,\"errors\":[\"Hàng 2: Thiếu tên sản phẩm\"]}; DB +2; errors=[\"Hàng 2: Thiếu tên sản phẩm\"]",
+    "result": "Fail",
+    "note": "báo đúng số dòng nhưng vẫn thêm các dòng hợp lệ (không rollback)",
+    "at": "2026-10-16T07:16:58.623Z"
+  }
+]

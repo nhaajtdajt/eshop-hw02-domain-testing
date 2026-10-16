@@ -313,3 +313,23 @@ features/FR-16/03_bva.md: boundary table for 7 quantities; 19 new tests FR16-BV-
 ~~~
 
 ---
+
+## Entry 016 — FR-16 — 04 Execution
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:21:49
+- **Human review / changes:** Phát hiện 2 kết quả không đáng tin và chạy lại: DT-02 UI (bảng xem trước chưa cập nhật nên import nhầm dữ liệu test trước — nhận ra vì tên sản phẩm trả về là FR16-1..3), BV-18 (lỗi 413 che mất kiểm tra rollback). DT-16 chấm Pass theo tiêu chí DB không đổi nhưng ghi chú banner xanh gây hiểu nhầm (BUG-08). BV-04 suy ra thông báo UI từ code, chưa quan sát trực tiếp trên UI.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 4 - Execution): Execute the 62 designed FR-16 tests. API layer: repeatable script POSTing JSON arrays to /api/admin/import-products, counting products before/after. UI layer: assign real CSV files to the Web Admin file input, wait for the preview, click Import, read the banner, count products and delete what the case created. Pass criterion for 'rejected' = DB product count unchanged. Verify each browser result against the preview content before trusting it; keep evidence (scripts, raw JSON, screenshots).
+~~~
+
+**AI output**
+
+~~~text
+evidence/run_api_tests.js + api_results.json (39 API checks: 17 pass, 22 fail), dt39_response.txt, ui_results.json, 2 screenshots. 04_execution.md: 62 designed, 62 executed, 28 pass, 34 fail, 11 distinct bugs: no rollback; price not validated; quoted CSV fields broken (split(',')); no .csv check; header and field count not validated; whitespace-only name accepted by API; FR-15 constraints (category, name length 256) not applied; green 'Import hoàn tất' banner for partial/failed imports with HTTP 200; no admin role check; [null] gives HTTP 500 with stack trace; 1000-row import hits the 100 KB body limit (HTTP 413). Re-runs: DT-02 UI (preview not refreshed in first run), BV-18 (413 hid the atomicity check).
+~~~
+
+---
