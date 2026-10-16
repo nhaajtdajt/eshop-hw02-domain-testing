@@ -1,0 +1,425 @@
+[
+  {
+    "id": "MFR-DT-02",
+    "layer": "API",
+    "expected": "401, không tạo đơn",
+    "actual": "HTTP 401 {\"error\":\"Unauthorized\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.236Z"
+  },
+  {
+    "id": "MFR-DT-07",
+    "layer": "API",
+    "expected": "đơn có tổng = 30,000,000 (backend tự tính) hoặc bị từ chối",
+    "actual": "HTTP 200 {\"message\":\"Checkout successful\",\"orderId\":71}; tổng đơn lưu = 1",
+    "result": "Fail",
+    "note": "backend lưu nguyên total_amount do client gửi",
+    "at": "2026-10-16T07:34:40.264Z"
+  },
+  {
+    "id": "MFR-DT-32",
+    "layer": "API",
+    "expected": "400, không tạo đơn",
+    "actual": "thiếu total_amount: HTTP 200 {\"message\":\"Checkout successful\",\"orderId\":72}; đơn mới +1",
+    "result": "Fail",
+    "note": "đơn rác đã được tạo",
+    "at": "2026-10-16T07:34:40.290Z"
+  },
+  {
+    "id": "MFR-DT-33",
+    "layer": "API",
+    "expected": "400, không tạo đơn",
+    "actual": "total_amount = -100: HTTP 200 {\"message\":\"Checkout successful\",\"orderId\":73}; đơn mới +1",
+    "result": "Fail",
+    "note": "đơn rác đã được tạo",
+    "at": "2026-10-16T07:34:40.313Z"
+  },
+  {
+    "id": "MFR-DT-34",
+    "layer": "API",
+    "expected": "400, không tạo đơn",
+    "actual": "total_amount = 'abc': HTTP 200 {\"message\":\"Checkout successful\",\"orderId\":74}; đơn mới +1",
+    "result": "Fail",
+    "note": "đơn rác đã được tạo",
+    "at": "2026-10-16T07:34:40.333Z"
+  },
+  {
+    "id": "MFR-DT-09",
+    "layer": "API",
+    "expected": "discount 40,000; final 360,000",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":1,\"discount_amount\":-3600000,\"final_amount\":4000000,\"message\":\"Áp dụng thành công! Giảm 10%\"",
+    "result": "Fail",
+    "note": "discount ÂM: công thức total*(1-value)",
+    "at": "2026-10-16T07:34:40.342Z"
+  },
+  {
+    "id": "MFR-DT-10",
+    "layer": "API",
+    "expected": "discount 50,000; final 550,000",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":2,\"discount_amount\":50000,\"final_amount\":550000,\"message\":\"Áp dụng thành công! Giảm 50.000 ₫",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.353Z"
+  },
+  {
+    "id": "MFR-DT-11",
+    "layer": "API",
+    "expected": "discount 100,000; final 300,000",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":3,\"discount_amount\":100000,\"final_amount\":300000,\"message\":\"Áp dụng thành công! Giảm 100.000",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.360Z"
+  },
+  {
+    "id": "MFR-DT-12",
+    "layer": "API",
+    "expected": "từ chối",
+    "actual": "HTTP 404 {\"error\":\"Mã giảm giá không tồn tại hoặc đã bị vô hiệu hóa\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.364Z"
+  },
+  {
+    "id": "MFR-DT-13",
+    "layer": "API",
+    "expected": "từ chối (mã không hoạt động)",
+    "actual": "HTTP 404 {\"error\":\"Mã giảm giá không tồn tại hoặc đã bị vô hiệu hóa\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.402Z"
+  },
+  {
+    "id": "MFR-DT-17",
+    "layer": "API",
+    "expected": "từ chối, không lỗi server",
+    "actual": "HTTP 404 {\"error\":\"Mã giảm giá không tồn tại hoặc đã bị vô hiệu hóa\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.407Z"
+  },
+  {
+    "id": "MFR-DT-18",
+    "layer": "API",
+    "expected": "từ chối vì hết hạn",
+    "actual": "HTTP 400 {\"error\":\"Mã giảm giá đã hết hạn\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.411Z"
+  },
+  {
+    "id": "MFR-DT-19",
+    "layer": "API",
+    "expected": "từ chối (lý do hợp lệ bất kỳ)",
+    "actual": "HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 100.000 ₫ để áp dụng mã này\"}",
+    "result": "Pass",
+    "note": "báo 'chưa đủ ngưỡng' trước 'hết hạn' (thứ tự không quy định)",
+    "at": "2026-10-16T07:34:40.416Z"
+  },
+  {
+    "id": "MFR-DT-20",
+    "layer": "API",
+    "expected": "từ chối (chưa đủ ngưỡng)",
+    "actual": "HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 300.000 ₫ để áp dụng mã này\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.421Z"
+  },
+  {
+    "id": "MFR-DT-21",
+    "layer": "API",
+    "expected": "từ chối (chưa đủ ngưỡng)",
+    "actual": "HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 500.000 ₫ để áp dụng mã này\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.425Z"
+  },
+  {
+    "id": "MFR-DT-22",
+    "layer": "API",
+    "expected": "từ chối (C4: phải đăng nhập)",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":1,\"discount_amount\":-3600000,\"final_amount\":4000000,\"message\":\"Áp dụng thành công! Giảm 10%\"",
+    "result": "Fail",
+    "note": "apply-coupon không yêu cầu token",
+    "at": "2026-10-16T07:34:40.429Z"
+  },
+  {
+    "id": "MFR-DT-23",
+    "layer": "API",
+    "expected": "từ chối (đã dùng hết lượt)",
+    "actual": "HTTP 400 {\"error\":\"Bạn đã sử dụng mã này 1 lần (đã đạt giới hạn)\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.449Z"
+  },
+  {
+    "id": "MFR-DT-24",
+    "layer": "API",
+    "expected": "từ chối dù bỏ user_id (C5)",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":1,\"discount_amount\":-3600000,\"final_amount\":4000000,\"message\":\"Áp dụng thành công! Giảm 10%\"",
+    "result": "Fail",
+    "note": "bỏ user_id là qua mặt được kiểm tra lượt dùng",
+    "at": "2026-10-16T07:34:40.455Z"
+  },
+  {
+    "id": "MFR-DT-25",
+    "layer": "API",
+    "expected": "discount ≈ 33,333; final ≈ 300,000",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":1,\"discount_amount\":-2999997,\"final_amount\":3333330,\"message\":\"Áp dụng thành công! Giảm 10%\"",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T07:34:40.481Z"
+  },
+  {
+    "id": "MFR-DT-26",
+    "layer": "API",
+    "expected": "final không âm (0)",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":16,\"discount_amount\":1000000,\"final_amount\":-900000,\"message\":\"Áp dụng thành công! Giảm 1.00",
+    "result": "Fail",
+    "note": "tổng thanh toán âm",
+    "at": "2026-10-16T07:34:40.517Z"
+  },
+  {
+    "id": "MFR-DT-35",
+    "layer": "API",
+    "expected": "401",
+    "actual": "HTTP 401 {\"error\":\"Unauthorized\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.521Z"
+  },
+  {
+    "id": "MFR-DT-36",
+    "layer": "API",
+    "expected": "từ chối, không ghi bản ghi",
+    "actual": "HTTP 200 {\"message\":\"Usage recorded\"}; coupon_usage +1",
+    "result": "Fail",
+    "note": "ghi lượt dùng cho mã không tồn tại",
+    "at": "2026-10-16T07:34:40.542Z"
+  },
+  {
+    "id": "MFR-DT-37",
+    "layer": "API",
+    "expected": "400",
+    "actual": "HTTP 400 {\"error\":\"Vui lòng nhập mã giảm giá\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.555Z"
+  },
+  {
+    "id": "MFR-DT-38",
+    "layer": "API",
+    "expected": "400, không trả final_amount",
+    "actual": "HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 300.000 ₫ để áp dụng mã này\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.559Z"
+  },
+  {
+    "id": "MFR-DT-39",
+    "layer": "API",
+    "expected": "400",
+    "actual": "HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 300.000 ₫ để áp dụng mã này\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.563Z"
+  },
+  {
+    "id": "MFR-DT-40",
+    "layer": "API",
+    "expected": "400",
+    "actual": "HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 300.000 ₫ để áp dụng mã này\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.567Z"
+  },
+  {
+    "id": "MFR-BV-01",
+    "layer": "API",
+    "expected": "từ chối",
+    "actual": "SAVE10 @ 299999: HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 300.000 ₫ để áp dụng mã này\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.572Z"
+  },
+  {
+    "id": "MFR-BV-02",
+    "layer": "API",
+    "expected": "chấp nhận, tính tiền đúng",
+    "actual": "SAVE10 @ 300000: HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 300.000 ₫ để áp dụng mã này\"}",
+    "result": "Fail",
+    "note": "đúng bằng ngưỡng bị từ chối (code dùng '>' thay vì '>=')",
+    "at": "2026-10-16T07:34:40.576Z"
+  },
+  {
+    "id": "MFR-BV-03",
+    "layer": "API",
+    "expected": "chấp nhận, tính tiền đúng",
+    "actual": "SAVE10 @ 300001: HTTP 200 {\"success\":true,\"coupon_id\":1,\"discount_amount\":-2700009,\"final_amount\":3000010,\"message\":\"Áp dụng thành công! Giảm 10%\"",
+    "result": "Fail",
+    "note": "discount âm",
+    "at": "2026-10-16T07:34:40.581Z"
+  },
+  {
+    "id": "MFR-BV-04",
+    "layer": "API",
+    "expected": "từ chối",
+    "actual": "BIGBUY @ 499999: HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 500.000 ₫ để áp dụng mã này\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.584Z"
+  },
+  {
+    "id": "MFR-BV-05",
+    "layer": "API",
+    "expected": "chấp nhận, tính tiền đúng",
+    "actual": "BIGBUY @ 500000: HTTP 400 {\"error\":\"Đơn hàng chưa đủ giá trị tối thiểu 500.000 ₫ để áp dụng mã này\"}",
+    "result": "Fail",
+    "note": "đúng bằng ngưỡng bị từ chối (code dùng '>' thay vì '>=')",
+    "at": "2026-10-16T07:34:40.587Z"
+  },
+  {
+    "id": "MFR-BV-06",
+    "layer": "API",
+    "expected": "chấp nhận, tính tiền đúng",
+    "actual": "BIGBUY @ 500001: HTTP 200 {\"success\":true,\"coupon_id\":2,\"discount_amount\":50000,\"final_amount\":450001,\"message\":\"Áp dụng thành công! Giảm 50.000 ₫",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.592Z"
+  },
+  {
+    "id": "MFR-BV-07",
+    "layer": "API",
+    "expected": "từ chối (hết hạn)",
+    "actual": "expired_at=2026-10-15: HTTP 400 {\"error\":\"Mã giảm giá đã hết hạn\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.622Z"
+  },
+  {
+    "id": "MFR-BV-08",
+    "layer": "API",
+    "expected": "từ chối (hết hạn)",
+    "actual": "expired_at=2026-10-16: HTTP 400 {\"error\":\"Mã giảm giá đã hết hạn\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.646Z"
+  },
+  {
+    "id": "MFR-BV-09",
+    "layer": "API",
+    "expected": "chấp nhận",
+    "actual": "expired_at=2026-10-17: HTTP 200 {\"success\":true,\"coupon_id\":19,\"discount_amount\":10000,\"final_amount\":90000,\"message\":\"Áp dụng thành công! Giảm 10.000 ₫",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.668Z"
+  },
+  {
+    "id": "MFR-BV-10",
+    "layer": "API",
+    "expected": "từ chối (hết hạn)",
+    "actual": "expired_at=2026-10-16T14:33:40: HTTP 400 {\"error\":\"Mã giảm giá đã hết hạn\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.692Z"
+  },
+  {
+    "id": "MFR-BV-11",
+    "layer": "API",
+    "expected": "chấp nhận",
+    "actual": "expired_at=2026-10-16T14:35:40: HTTP 200 {\"success\":true,\"coupon_id\":21,\"discount_amount\":10000,\"final_amount\":90000,\"message\":\"Áp dụng thành công! Giảm 10.000 ₫",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.724Z"
+  },
+  {
+    "id": "MFR-BV-12",
+    "layer": "API",
+    "expected": "chấp nhận (đã dùng 0)",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":3,\"discount_amount\":100000,\"final_amount\":300000,\"message\":\"Áp dụng thành công! Giảm 100.000",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.729Z"
+  },
+  {
+    "id": "MFR-BV-13",
+    "layer": "API",
+    "expected": "chấp nhận (đã dùng 1 = max-1)",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":3,\"discount_amount\":100000,\"final_amount\":300000,\"message\":\"Áp dụng thành công! Giảm 100.000",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.857Z"
+  },
+  {
+    "id": "MFR-BV-14",
+    "layer": "API",
+    "expected": "từ chối (đã dùng 2 = max)",
+    "actual": "HTTP 400 {\"error\":\"Bạn đã sử dụng mã này 2 lần (đã đạt giới hạn)\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:40.961Z"
+  },
+  {
+    "id": "MFR-BV-15",
+    "layer": "API",
+    "expected": "final = 0 (không âm)",
+    "actual": "total 99999: HTTP 200 {\"success\":true,\"coupon_id\":22,\"discount_amount\":100000,\"final_amount\":-1,\"message\":\"Áp dụng thành công! Giảm 100.000 ₫\"",
+    "result": "Fail",
+    "note": "final âm",
+    "at": "2026-10-16T07:34:41.032Z"
+  },
+  {
+    "id": "MFR-BV-16",
+    "layer": "API",
+    "expected": "final = 0 (không âm)",
+    "actual": "total 100000: HTTP 200 {\"success\":true,\"coupon_id\":22,\"discount_amount\":100000,\"final_amount\":0,\"message\":\"Áp dụng thành công! Giảm 100.000 ₫\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:41.036Z"
+  },
+  {
+    "id": "MFR-BV-17",
+    "layer": "API",
+    "expected": "final = 1 (không âm)",
+    "actual": "total 100001: HTTP 200 {\"success\":true,\"coupon_id\":22,\"discount_amount\":100000,\"final_amount\":1,\"message\":\"Áp dụng thành công! Giảm 100.000 ₫\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:41.042Z"
+  },
+  {
+    "id": "MFR-BV-18",
+    "layer": "API",
+    "expected": "discount 1,000; final 0",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":23,\"discount_amount\":-99000,\"final_amount\":100000,\"message\":\"Áp dụng thành công! Giảm 100%\"}",
+    "result": "Fail",
+    "note": "discount âm",
+    "at": "2026-10-16T07:34:41.098Z"
+  },
+  {
+    "id": "MFR-BV-19",
+    "layer": "API",
+    "expected": "discount 0 hoặc 1, final = total - discount ≥ 0",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":24,\"discount_amount\":-81,\"final_amount\":90,\"message\":\"Áp dụng thành công! Giảm 10%\"}",
+    "result": "Fail",
+    "note": "",
+    "at": "2026-10-16T07:34:41.134Z"
+  },
+  {
+    "id": "MFR-BV-20",
+    "layer": "API",
+    "expected": "discount 1; final 9",
+    "actual": "HTTP 200 {\"success\":true,\"coupon_id\":24,\"discount_amount\":-90,\"final_amount\":100,\"message\":\"Áp dụng thành công! Giảm 10%\"}",
+    "result": "Fail",
+    "note": "discount âm",
+    "at": "2026-10-16T07:34:41.165Z"
+  },
+  {
+    "id": "MFR-BV-23",
+    "layer": "API",
+    "expected": "từ chối, không lỗi server",
+    "actual": "HTTP 404 {\"error\":\"Mã giảm giá không tồn tại hoặc đã bị vô hiệu hóa\"}",
+    "result": "Pass",
+    "note": "",
+    "at": "2026-10-16T07:34:41.285Z"
+  }
+]

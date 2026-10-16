@@ -1,0 +1,37 @@
+{
+  "note": "Raw results of the UI checks on the Mobile app run as Expo Web (react-native-web) at http://localhost:8081. API_URL in App.js was TEMPORARILY changed to http://localhost:3000/api for the run and reverted afterwards (git diff clean). fetch() was wrapped to capture POST bodies. Test data (FRM-* products/coupons, orders, coupon_usage) was removed afterwards.",
+  "run_date": "2026-10-16",
+  "environment_limits": ["no physical device or emulator", "Alert.alert is not shown on web: results inferred from screen/cart/order state"],
+  "DT-01_guest_checkout": "tapping 'Tiến hành thanh toán' as guest opened the login screen",
+  "DT-03_single_product_checkout": "• FRM-400k x 1 — 400,000 ₫ ; total field value '400000' (read-only)",
+  "DT-04_three_products_listed": "• FRM-100k x 1 — 100,000 ₫ • FRM-200k x 1 — 200,000 ₫ • FRM-300k x 1 — 300,000 ₫",
+  "DT-05_total_field": {"readOnly": true, "value": "400000", "note": "no ₫ and no thousands separator"},
+  "DT-06_empty_cart": "Giỏ hàng của bạn đang trống / Tiếp tục mua sắm (no checkout button)",
+  "DT-14_empty_code": "'Áp dụng' with an empty code sent 0 apply-coupon requests",
+  "coupon_screen_results_cart_400000": {
+    "SAVE10": "✅ Giảm 10% | Tiết kiệm: -3,600,000 ₫ | Thành tiền: 4,000,000 ₫ | Tổng thanh toán: 4,000,000 ₫",
+    "save10 (lowercase)": "same as SAVE10 (accepted)",
+    "  SAVE10  (padded)": "same as SAVE10 (accepted)",
+    "NOPE": "Mã giảm giá không tồn tại hoặc đã bị vô hiệu hóa",
+    "VIP100": "Tiết kiệm: 100,000 ₫ | Thành tiền: 300,000 ₫ | Tổng thanh toán: 300,000 ₫",
+    "BIGBUY": "Đơn hàng chưa đủ giá trị tối thiểu 500.000 ₫ để áp dụng mã này",
+    "EXPIRED": "Mã giảm giá đã hết hạn"
+  },
+  "DT-10_BIGBUY_at_600000": "Tiết kiệm: 50,000 ₫ | Thành tiền: 550,000 ₫",
+  "DT-13_inactive_code": "Mã giảm giá không tồn tại hoặc đã bị vô hiệu hóa",
+  "DT-20_SAVE10_at_200000": "Đơn hàng chưa đủ giá trị tối thiểu 300.000 ₫ ...",
+  "DT-23_SAVE10_second_time": "Bạn đã sử dụng mã này 1 lần (đã đạt giới hạn)",
+  "DT-28_edit_code_after_apply": "result cleared; Tổng thanh toán back to 400,000 ₫",
+  "DT-29_invalid_then_valid": "error replaced by the valid result",
+  "BV-01_SAVE10_at_299999": "rejected (min 300.000)",
+  "BV-02_SAVE10_at_300000": "REJECTED: 'Đơn hàng chưa đủ giá trị tối thiểu 300.000 ₫' although total == minimum",
+  "DT-30_confirm_with_SAVE10": {
+    "request_POST_/checkout": {"items": [{"id": 1783, "name": "FRM-400k", "price": 400000, "quantity": 1}], "total_amount": 4000000, "coupon_id": 1},
+    "request_POST_/coupon-usage": {"coupon_id": 1},
+    "screen": "Thanh toán thành công! ; cart label Giỏ (0)",
+    "order_in_db": {"id": 75, "total_amount": 4000000, "status": "pending", "shipping_address": null}
+  },
+  "BV-21_cart_with_1_item": "request items length = 1 (correct)",
+  "BV-22_cart_with_2_items": {"screen_list": ["FRM-100k x 1", "FRM-200k x 1"], "request_items": ["FRM-100k"], "total_amount": 300000, "order_in_db_total": 300000, "note": "last item (FRM-200k) missing from items"},
+  "DT-31_cart_with_3_items": {"screen_list": ["FRM-100k", "FRM-200k", "FRM-300k"], "request_items": ["FRM-100k", "FRM-200k"], "total_amount": 600000, "note": "last item (FRM-300k) missing from items"}
+}

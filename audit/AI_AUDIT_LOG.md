@@ -436,3 +436,23 @@ features/Mobile-FR-08-09/03_bva.md: boundary table (8 quantities); 23 new tests 
 ~~~
 
 ---
+
+## Entry 022 — Mobile-FR-08/09 — 04 Execution
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:40:11
+- **Human review / changes:** Sửa lỗi script của chính mình: BV-11 (giờ UTC vs giờ địa phương trong expired_at) và luồng giỏ nhiều món còn sót sản phẩm cũ (chạy lại với giỏ sạch cho BV-22). Kết quả UI chạy bằng Expo Web, chưa phải thiết bị thật — ghi rõ trong báo cáo. Đã hoàn nguyên API_URL tạm và xác nhận git không còn thay đổi ở frontend-mobile.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 4 - Execution): Execute the 63 designed Mobile FR-08/09 tests. API layer with a repeatable script (expected amounts from the SRS formula, DB only to set up and clean state). UI layer: run the Mobile app as Expo Web (temporary local API_URL, dependencies installed with --no-save), drive the real cart/checkout/coupon screens, wrap fetch to capture POST bodies, read the resulting orders from the DB. Record per test layer, Pass/Fail, actual and bug reference; state the environment limits (no device/emulator, Alert invisible on web). Revert all temporary edits and clean test data afterwards.
+~~~
+
+**AI output**
+
+~~~text
+evidence/run_api_tests.js + api_results.json (47 API checks: 30 pass / 17 fail), ui_results.json, 1 screenshot. 04_execution.md: 63 designed, 63 executed, 42 pass, 21 fail, 8 distinct bugs: percent discount formula gives negative discount (SAVE10 on 400,000 -> Tiết kiệm -3,600,000, total 4,000,000, order saved at 4,000,000); threshold uses > (exact minimum rejected); backend trusts client total_amount and accepts missing/negative/non-numeric; apply-coupon without token and without user_id bypasses C4/C5; fixed discount larger than total gives negative final; coupon-usage accepts unknown coupon_id; mobile drops the last cart item from the checkout request; total field not formatted with ₫. App.js reverted (git diff clean), test data removed, Expo server stopped.
+~~~
+
+---
