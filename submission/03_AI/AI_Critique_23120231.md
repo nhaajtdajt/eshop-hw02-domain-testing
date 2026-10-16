@@ -1,7 +1,3 @@
 # AI Critique — HW02 Domain Testing (Thành viên 4, MSSV 23120231)
 
-AI không sai ở chỗ khó, mà sai ở chỗ tin quá mức vào chính mình. Claude liệt kê lớp tương đương và giá trị biên rất nhanh, nhưng hầu hết sai sót nằm ở phần thực thi. Script test của AI nhiều lần cho kết quả giả: quên gắn token Admin nên cả nhóm BV-01..08 của FR-10 báo Fail; dùng giờ UTC trong khi server hiểu giờ địa phương (Mobile BV-11); kiểm tra hết hạn OTP chỉ sau 12 giây rồi kết luận; nạp file CSV mà không chờ FileReader nên import nhầm dữ liệu của test trước. Lần nào AI cũng tự tin báo kết quả.
 
-AI cũng bỏ sót những thứ nằm ngoài chữ trong spec: file CSV dùng dấu chấm phẩy của Excel tiếng Việt, race condition làm đơn đã hủy bị xác nhận đè (1/60 lần), việc đoán OTP không bị giới hạn. Nguyên nhân là AI bám câu chữ của prompt và spec, không có cảm giác về thời gian, trạng thái dùng chung hay thói quen người dùng thật. Nó cũng dễ chấm Pass khi lý do không đúng (lỗi 413 che mất kiểm tra rollback).
-
-Nguyên tắc tôi rút ra: giao cho AI phần liệt kê và tính toán, nhưng người kiểm thử giữ phần oracle. Expected phải lấy từ spec, không từ code hay kết quả hệ thống trả về, nên mới nhận ra "Tiết kiệm: -3,600,000 ₫" là lỗi thay vì chấp nhận nó. Luôn bắt AI chạy request đối chứng, đối chiếu dữ liệu sinh ra với đầu vào, và ghi rõ điều chưa test. Review phải dựa trên bằng chứng như số bản ghi trong DB hay body request, không dựa vào lời tóm tắt của AI.

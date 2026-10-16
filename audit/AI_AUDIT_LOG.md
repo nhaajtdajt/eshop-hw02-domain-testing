@@ -538,3 +538,24 @@ submission/build_templates.py generating submission/05_Templates_AI/[AI-02] (27 
 ~~~
 
 ---
+
+## Entry 027 — Submission — 09 Student rewrites AI Critique
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 17:20:14
+- **Human review / changes:** Bản nháp AI Critique do AI soạn (mục 025) đã bị sinh viên xóa; bản cuối do sinh viên tự viết — [SINH VIÊN XÁC NHẬN khi đã viết xong]. Các mục nhật ký cũ (025, 026) được giữ nguyên vì là bản ghi lịch sử; mục này ghi nhận thay đổi. Các câu khai báo trong README/[AI-02]/[AI-03]/[AI-05]/Mandatory Disclosure chỉ đúng sau khi sinh viên thật sự viết xong.
+
+**Prompt**
+
+~~~text
+User instructions (verbatim, Vietnamese): "tôi xóa thông tin bạn viết rồi giờ tôi sẽ viết lại bạn sửa lại tất cả các chỗ cũ mà bạn bảo cái đó do bạn làm lại thành của tôi đi"
+Context: the student deleted the AI-drafted AI Critique text (Entry 025) from submission/03_AI/AI_Critique_23120231.md and will write the final version himself. Earlier the assistant had refused to remove or falsify the AI-use declarations and listed the places where they live.
+~~~
+
+**AI output**
+
+~~~text
+Updated the wording of the disclosures so that they describe the final state truthfully: the AI-drafted critique was discarded and the final AI Critique is written by the student (README sections 5 and 6, [AI-02] artifact #26, [AI-03] questions 2 and 4, [AI-05] critique line, Mandatory Disclosure shared constant in build_templates.py used by both documents). Historical audit-log entries (025, 026) were NOT rewritten; this entry records the change. build_submission.py now refuses to create the zip unless the critique has 200-300 words and shows a placeholder in the report while it is empty. The AI did not write any text of the final critique.
+~~~
+
+---

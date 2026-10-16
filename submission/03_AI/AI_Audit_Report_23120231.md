@@ -7,9 +7,9 @@
 | Công cụ AI | Claude Code (mô hình Sonnet 5.5, `claude-sonnet-5-5`) chạy trong ứng dụng Claude desktop |
 | Công cụ khác | Không dùng ChatGPT/Gemini/Copilot/Cursor; không dùng công cụ sinh test (ví dụ Diffblue) |
 | Nhiệm vụ dùng AI | Phân tích spec và code, chia lớp tương đương, phân tích biên, viết script chạy test, chạy thử UI/API, tổng hợp kết quả, viết báo cáo/bug report/AI gap, tạo và chỉnh Agent Skill |
-| Số lần ghi nhận | 26 mục (mỗi bước của mỗi feature một mục) |
+| Số lần ghi nhận | 27 mục (mỗi bước của mỗi feature một mục) |
 | Người review | Sinh viên đối chiếu mọi kết quả với SRS và bằng chứng chạy thật; ô "Human review / changes" của từng mục ghi phần đã sửa |
-| Tỉ lệ chính xác của AI | 27 artifact: VALID 13 (48%), INVALID 0 (0%), INCOMPLETE 14 (52%) — theo mẫu 5 mục trong `05_Templates_AI/[AI-02] AI Audit Report - 23120231.docx` |
+| Tỉ lệ chính xác của AI | 28 artifact: VALID 13 (46%), INVALID 0 (0%), INCOMPLETE 15 (54%) — theo mẫu 5 mục trong `05_Templates_AI/[AI-02] AI Audit Report - 23120231.docx` |
 
 ## Cách ghi nhật ký
 Mỗi mục gồm: tên công cụ, ngày giờ (từ đồng hồ máy khi ghi), prompt, output, phần người review đã chỉnh. Nhật ký được ghi ngay sau mỗi bước bằng `skills/domain-testing-bva/scripts/append_audit.py`. Vì AI chạy ngay trong phiên làm việc, "prompt" của mỗi bước gồm yêu cầu gốc của sinh viên và prompt bước theo skill; "output" là tóm tắt tài liệu/kết quả AI tạo ra (toàn văn nằm trong các file `features/*/0x_*.md`).
@@ -44,6 +44,7 @@ Mỗi mục gồm: tên công cụ, ngày giờ (từ đồng hồ máy khi ghi)
 | 024 | Mobile-FR-08/09 | 06 Bug report | 2026-10-16 14:41:44 |
 | 025 | Submission | 07 Submission package | 2026-10-16 15:28:58 |
 | 026 | Submission | 08 AI templates | 2026-10-16 17:05:16 |
+| 027 | Submission | 09 Student rewrites AI Critique | 2026-10-16 17:20:14 |
 
 ## Phụ lục: toàn bộ nhật ký (nguyên văn `audit/AI_AUDIT_LOG.md`)
 
@@ -580,6 +581,27 @@ Task: read the HW01 submission (NOP_BAI_23120231_HW01, README, template folder, 
 
 ~~~text
 submission/build_templates.py generating submission/05_Templates_AI/[AI-02] (27 artifacts: VALID 13, INVALID 0, INCOMPLETE 14), [AI-03], [AI-05] and a copy of the signed [AI-06]; build_submission.py extended with report sections 10 (AI Audit summary with accuracy ratio and when to use AI), 11 (AI Critique), 12 (Mandatory Disclosure); README section 6b. Fields only the student can attest are marked [SINH VIÊN ĐIỀN] / [SV tự tick]; signature cells left empty.
+~~~
+
+---
+
+### Entry 027 — Submission — 09 Student rewrites AI Critique
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 17:20:14
+- **Human review / changes:** Bản nháp AI Critique do AI soạn (mục 025) đã bị sinh viên xóa; bản cuối do sinh viên tự viết — [SINH VIÊN XÁC NHẬN khi đã viết xong]. Các mục nhật ký cũ (025, 026) được giữ nguyên vì là bản ghi lịch sử; mục này ghi nhận thay đổi. Các câu khai báo trong README/[AI-02]/[AI-03]/[AI-05]/Mandatory Disclosure chỉ đúng sau khi sinh viên thật sự viết xong.
+
+**Prompt**
+
+~~~text
+User instructions (verbatim, Vietnamese): "tôi xóa thông tin bạn viết rồi giờ tôi sẽ viết lại bạn sửa lại tất cả các chỗ cũ mà bạn bảo cái đó do bạn làm lại thành của tôi đi"
+Context: the student deleted the AI-drafted AI Critique text (Entry 025) from submission/03_AI/AI_Critique_23120231.md and will write the final version himself. Earlier the assistant had refused to remove or falsify the AI-use declarations and listed the places where they live.
+~~~
+
+**AI output**
+
+~~~text
+Updated the wording of the disclosures so that they describe the final state truthfully: the AI-drafted critique was discarded and the final AI Critique is written by the student (README sections 5 and 6, [AI-02] artifact #26, [AI-03] questions 2 and 4, [AI-05] critique line, Mandatory Disclosure shared constant in build_templates.py used by both documents). Historical audit-log entries (025, 026) were NOT rewritten; this entry records the change. build_submission.py now refuses to create the zip unless the critique has 200-300 words and shows a placeholder in the report while it is empty. The AI did not write any text of the final critique.
 ~~~
 
 ---
