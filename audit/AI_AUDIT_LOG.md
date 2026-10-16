@@ -456,3 +456,23 @@ evidence/run_api_tests.js + api_results.json (47 API checks: 30 pass / 17 fail),
 ~~~
 
 ---
+
+## Entry 023 — Mobile-FR-08/09 — 05 AI gap analysis
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:40:51
+- **Human review / changes:** AI tự đánh giá chính mình nên có nguy cơ thiên vị; bám bằng chứng cụ thể (mã lỗi, tổng đơn 700,000 vs 300,000, kết quả UI). G3 và G6 ghi rõ là CHƯA test thay vì giả vờ đã phủ. Người dùng nên cân nhắc chạy lại phần UI trên emulator/thiết bị thật nếu có để kiểm chứng.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 5 - AI gap analysis): Compare the first-pass design (steps 1-3) with the final set after execution for Mobile FR-08/09. List what the AI missed or got wrong, how it was found, cause group (Prompt / Tool limitation / Feature complexity), explanation and a skill change; be explicit about what could not be tested because no real device/emulator was available. State what the AI got right.
+~~~
+
+**AI output**
+
+~~~text
+05_ai_gap.md with 8 gaps: G1 runnability of the mobile app not checked before design (hard-coded LAN IP, missing web deps); G2 Alert.alert invisible on web; G3 device-specific behaviour untested (numeric keyboard, rotation, double tap); G4 timezone mistake in BV-11 script; G5 stale cart between UI scenarios; G6 untested scenarios (offline, double submit, change cart after applying coupon); G7 one root cause fails many tests (percent formula, '>'); G8 docs disagree on admin password. Also what the AI got right (H1, H2, H3, H5, H6, H11, H14).
+~~~
+
+---
