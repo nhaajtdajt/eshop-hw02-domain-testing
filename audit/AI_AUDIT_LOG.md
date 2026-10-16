@@ -107,3 +107,23 @@ Step prompt per skill (Step 5 - AI gap analysis): Compare the first-pass test de
 ~~~
 
 ---
+
+## Entry 006 — FR-03 — 06 Bug report
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 13:36:49
+- **Human review / changes:** Mức độ nghiêm trọng là đánh giá của AI, người dùng nên xác nhận lại (đặc biệt BUG-02 Critical vs Major). Chưa có screenshot của hộp thoại alert() vì harness thay alert bằng bộ ghi; bằng chứng cho BUG-02/03/09 là log JSON và code. Cần chụp lại bằng tay nếu muốn ảnh trước khi đăng issue.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 6 - Bug report): Group the 40 failing FR-03 tests by root cause and write one bug per root cause using the template: title, feature, severity, steps to reproduce, expected (quote SRS line numbers), actual, evidence paths, code location. Keep observations that the SRS does not require (no rate limit, email enumeration, case sensitivity) out of the bug list. Generate one GitHub-issue body file per bug but do NOT publish them.
+~~~
+
+**AI output**
+
+~~~text
+06_bugs.md with 10 bugs: BUG-01 OTP 4 digits (Major); BUG-02 UI regex rejects all spec-valid passwords (Critical); BUG-03 backend accepts empty/weak passwords (Major); BUG-04 no confirm-password field (Major); BUG-05 no step indicator; BUG-06 no back-to-login; BUG-07 email type=text; BUG-08 no required asterisks; BUG-09 errors via alert(); BUG-10 OTP never expires (Major). Plus an observations list. Added scripts/make_issue_bodies.py to the skill and generated features/FR-03/issues/BUG-01..10.md. GitHub issues NOT created yet.
+~~~
+
+---
