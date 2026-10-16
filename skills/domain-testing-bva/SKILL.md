@@ -51,6 +51,7 @@ Tạo thư mục nếu chưa có. Mẫu từng file nằm ở `references/templa
 6. Thêm hai nhóm hay bị bỏ sót (bài học từ FR-03):
    - **Request shape** với mọi API: thiếu trường, `null`, sai kiểu (object/số), chuỗi toàn khoảng trắng. Những thứ này không xuất hiện khi chỉ nghĩ "giá trị người dùng gõ".
    - **Lớp suy ra từ gợi ý trong code** (bảng Spec vs Code ở Bước 1): nếu code có dấu hiệu xử lý một lớp mà spec không nói (ví dụ regex đòi khoảng trắng, email phân biệt hoa/thường), vẫn thiết kế test và ghi expected là "quan sát", không phải "bug".
+   - **Đầu vào do công cụ khác sinh ra** (feature nhận file): BOM, dấu phân cách địa phương (`;` từ Excel tiếng Việt), kiểu xuống dòng, dòng trống, khoảng trắng đầu/cuối, định dạng số có dấu phân cách hàng nghìn, kể cả khi spec chỉ nhắc tới một chuẩn (ví dụ RFC 4180).
 7. Mỗi test ghi **lớp chạy** (UI, API hoặc cả hai). Ràng buộc có thể chỉ có ở UI (client) hoặc chỉ ở API; thiếu ở API là lỗi riêng, vì client không phải đường duy nhất vào hệ thống.
 8. Chỉ ghi expected ở mức hành vi mà spec nêu ("từ chối, không đổi dữ liệu"). Chất lượng thông báo lỗi ghi riêng thành quan sát, tránh chấm Pass cho thông báo không đúng loại rồi mới nhận ra expected quá cụ thể.
 9. Prompt AI theo thứ tự: (a) chia lớp cho từng input, (b) gộp thành test case theo quy tắc trên. Review và ghi lại phần đã sửa.
@@ -68,6 +69,8 @@ Tạo thư mục nếu chưa có. Mẫu từng file nằm ở `references/templa
 - Test fail ở một chỗ thì suy ra lỗi mới, thêm test case phụ (ghi `added-after-run`) để khoanh vùng.
 - **Viết script chạy API có thể lặp lại** (`evidence/run_*.js` hoặc tương đương): gọi HTTP thật, chỉ dùng DB để reset/seed trạng thái và để kiểm chứng dữ liệu có đổi hay không. Seed giá trị mà hệ thống không tự sinh được (ví dụ OTP 6 số khi hệ thống chỉ sinh 4 số) để vẫn kiểm được logic phía sau.
 - **Chạy UI trong trình duyệt tích hợp**: gán giá trị input theo cách React nhận biết (`Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set` rồi `dispatchEvent(new Event('input',{bubbles:true}))`), bấm nút submit thật, và thay `window.alert` bằng bộ ghi để lấy nội dung hộp thoại. Muốn thử validate phía client mà không đổi dữ liệu, dùng một giá trị phụ sai (ví dụ OTP sai) để server từ chối: nếu thấy lỗi của server nghĩa là validate client đã cho qua.
+- **UI bất đồng bộ** (đọc file, gọi API rồi mới render): chờ tới khi nội dung giao diện **khớp đầu vào vừa đưa** rồi mới thao tác, không chờ thời gian cố định; sau khi chạy, so dữ liệu thực tế sinh ra với đầu vào (tên sản phẩm lạ nghĩa là test đang chạy trên dữ liệu cũ).
+- **Test "từ chối" phải được từ chối vì đúng lý do**: nếu kết quả Pass có thể đến từ một lỗi khác (ví dụ HTTP 413 do payload quá lớn che mất kiểm tra rollback), kiểm tra mã lỗi và nội dung phản hồi. Với test từ chối cũng đọc thông báo hiển thị cho người dùng, không chỉ trạng thái dữ liệu.
 - **Request đối chứng**: trước mỗi nhóm test mới, chạy một request hợp lệ làm đối chứng. Nhiều test cùng báo một mã lỗi lạ (ví dụ cả nhóm 401) gần như chắc chắn là lỗi script, không phải lỗi hệ thống.
 - **Đồng thời (race)**: với feature có trạng thái cuối/bất biến, chạy N lần (≥50) hai thao tác xung đột cùng lúc và kiểm tra bất biến ở trạng thái cuối. Lỗi kiểu "kiểm tra rồi mới ghi" không lộ ra ở test tuần tự và có thể chỉ xuất hiện vài lần trong N.
 - **Cô lập trạng thái**: test dài (có chờ) dùng user/dữ liệu riêng mà các test khác không reset. Truy vấn kiểm chứng phải loại trừ dữ liệu của test khác (một lần DT-06 báo Fail giả vì lẫn token của test khác).
@@ -119,4 +122,5 @@ Skill này được chỉnh dần khi làm các feature thật. Sau mỗi featur
 | FR-03 | Số test Fail (40) lớn hơn nhiều số bug (10) vì hai lớp UI/API cùng ràng buộc | Thêm kết quả theo lớp và cột Bug ở Bước 4; thêm `make_issue_bodies.py` ở Bước 6 |
 | FR-10 | State machine: miền là cặp trạng thái nên test đủ ma trận; cùng quy tắc sai ở UI này nhưng đúng ở UI khác; có race condition chỉ lộ khi chạy đồng thời | Thêm ma trận đầy đủ, bảng điểm thao tác × trạng thái và test đồng thời ở Bước 2 và 4 |
 | FR-10 | Script test sao chép thiếu token làm 8 test Fail giả | Thêm quy tắc "request đối chứng" ở Bước 4 |
+| FR-16 | Feature nhận file: bỏ sót biến thể file thực tế (dấu `;`, BOM, dòng trống); UI bất đồng bộ làm một lần chạy sai; 413 che mất kiểm tra rollback; banner xanh khi có lỗi | Thêm nhóm "đầu vào do công cụ khác sinh ra" ở Bước 2, quy tắc chờ UI bất đồng bộ và "từ chối đúng lý do" ở Bước 4 |
 | FR-10 | Thấy lỗi của feature lân cận (FR-11, FR-13, FR-18) khi chạy | Thêm mục "Quan sát ngoài phạm vi" ở Bước 6 |
