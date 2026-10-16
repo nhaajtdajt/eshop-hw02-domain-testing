@@ -3,17 +3,17 @@
 Môi trường chung: Windows 11, Node v22.20.0, Backend `http://localhost:3000`, Web `http://localhost:5173`, Web Admin `http://localhost:5174` (Chromium trong Claude desktop), dữ liệu seed gốc. Ngày phát hiện: 2026-10-16. Spec = `README.md` (SRS). Mức độ: Critical > Major > Minor.
 Tài khoản dùng: User `test@eshop.com` / `Test1234!`, Admin `admin@eshop.com` / `Admin123!` (từ `database.js`).
 
-Trạng thái GitHub Issues: **chưa tạo** (chờ xác nhận). Nội dung từng issue được sinh sẵn trong `features/FR-10/issues/`.
+Trạng thái GitHub Issues: **đã đăng** #11–#17 (tiêu đề có tiền tố `[FR-10]`, nhãn `bug`) tại https://github.com/nhaajtdajt/eshop-hw02-domain-testing/issues. Nội dung từng issue nằm trong `features/FR-10/issues/`.
 
 | Bug | Tiêu đề | Mức độ | Test liên quan | Issue |
 |---|---|---|---|---|
-| BUG-01 | API cho phép chuyển đơn đã hủy (`canceled`) sang `delivered` | Major | DT-24, DT-43 | — |
-| BUG-02 | Web Admin hiện nút "Đánh dấu Đã giao" cho đơn đã hủy | Minor | DT-48 | — |
-| BUG-03 | API cho phép User hủy đơn đang giao (`shipping`) | Major | DT-28 | — |
-| BUG-04 | Trang Hồ sơ (Web) hiện nút "Hủy đơn" cho đơn đang giao | Major | DT-51 | — |
-| BUG-05 | API đổi trạng thái đơn không kiểm tra quyền Admin | Critical | DT-33 | — |
-| BUG-06 | Lỗi chuyển trạng thái không hợp lệ hiển thị tiếng Anh trên Web Admin | Minor | DT-54 | — |
-| BUG-07 | Race condition: đơn đã hủy có thể bị xác nhận đè lại | Minor | X-01 | — |
+| BUG-01 | API cho phép chuyển đơn đã hủy (`canceled`) sang `delivered` | Major | DT-24, DT-43 | #11 |
+| BUG-02 | Web Admin hiện nút "Đánh dấu Đã giao" cho đơn đã hủy | Minor | DT-48 | #12 |
+| BUG-03 | API cho phép User hủy đơn đang giao (`shipping`) | Major | DT-28 | #13 |
+| BUG-04 | Trang Hồ sơ (Web) hiện nút "Hủy đơn" cho đơn đang giao | Major | DT-51 | #14 |
+| BUG-05 | API đổi trạng thái đơn không kiểm tra quyền Admin | Critical | DT-33 | #15 |
+| BUG-06 | Lỗi chuyển trạng thái không hợp lệ hiển thị tiếng Anh trên Web Admin | Minor | DT-54 | #16 |
+| BUG-07 | Race condition: đơn đã hủy có thể bị xác nhận đè lại | Minor | X-01 | #17 |
 
 ---
 
