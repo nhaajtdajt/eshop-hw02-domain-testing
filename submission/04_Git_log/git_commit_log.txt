@@ -1,8 +1,9 @@
 # Git commit log — HW02 Domain Testing (MSSV 23120231)
 # Repo: https://github.com/nhaajtdajt/eshop-hw02-domain-testing
-# Generated: 2026-10-16 15:28:59 at HEAD 0e7361b (36 commits)
+# Generated: 2026-10-16 15:29:55 at HEAD c4ed0f4 (37 commits)
 # Format: <hash> | <date> | <author> | <message>   (mỗi bước kiểm thử của mỗi feature có một commit: '<FR-ID>: step N - ...')
 
+c4ed0f4 | 2026-10-16 15:29:45 +0700 | 23120231 | Submission: README, main report, bug report, AI audit report, AI critique and build script
 0e7361b | 2026-10-16 14:43:12 +0700 | 23120231 | Mobile FR-08/09: record GitHub issue numbers #29-#36
 5873a5a | 2026-10-16 14:41:57 +0700 | 23120231 | skill: refine domain-testing-bva with lessons from Mobile FR-08/09
 bc393c6 | 2026-10-16 14:41:45 +0700 | 23120231 | Mobile FR-08/09: step 6 - bug report (8 bugs) and issue bodies
