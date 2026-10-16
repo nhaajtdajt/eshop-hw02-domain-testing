@@ -1,0 +1,7 @@
+{
+  "note": "Exploratory UI checks added after the run (added-after-run), real CSV files on Web Admin > Sản phẩm.",
+  "X-01 UTF-8 BOM at file start": {"preview_headers": "name|price|description|imageUrl|category_id", "result": "✅ Import hoàn tất: 1/1", "db_added": 1, "verdict": "handled (BOM stripped by trim())"},
+  "X-02 blank line between two data rows": {"preview_rows": 3, "result": "✅ Import hoàn tất: 2/3 ... Hàng 3: Thiếu tên sản phẩm", "db_added": 2, "verdict": "blank line counted as an invalid row; partial import"},
+  "X-03 semicolon-delimited file (common in Vietnamese Excel exports)": {"preview_headers": "name;price;description;imageUrl;category_id", "result": "✅ Import hoàn tất: 0/1 ... Hàng 2: Thiếu tên sản phẩm", "db_added": 0, "verdict": "not recognised; message does not explain the delimiter problem; green banner"},
+  "X-04 values padded with spaces": {"db_added": 1, "stored_name": "FR16-1", "stored_price": 100000, "verdict": "values trimmed"}
+}

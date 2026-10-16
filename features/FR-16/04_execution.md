@@ -85,7 +85,16 @@
 - Sản phẩm có tên/giá hỏng do BUG-03 sẽ hiện trong danh sách sản phẩm; thuộc phạm vi FR-15 nếu xem xét hiển thị.
 - Import cùng một file hai lần tạo bản ghi trùng (spec không nêu), không test thêm.
 
-## 3. Thống kê FR-16
+## 3. Test khám phá thêm sau khi chạy (`added-after-run`)
+Chạy trên UI với file thật (`evidence/ui_exploratory.json`). Không có bug mới; các hiện tượng thuộc BUG-01/05/08.
+| ID | Kịch bản | Kết quả |
+|---|---|---|
+| X-01 | File UTF-8 có BOM ở đầu | Xử lý đúng, import 1/1 |
+| X-02 | Dòng trống nằm giữa hai dòng dữ liệu | Dòng trống bị tính là dòng lỗi "Thiếu tên sản phẩm"; 2/3 dòng được thêm (không rollback) |
+| X-03 | File phân cách bằng dấu chấm phẩy (kiểu Excel tiếng Việt) | Không nhận diện được cột; "0/1 ... Hàng 2: Thiếu tên sản phẩm" (banner xanh), thông báo không giải thích nguyên nhân |
+| X-04 | Giá trị có khoảng trắng hai đầu | Được `trim`, lưu đúng |
+
+## 4. Thống kê FR-16
 
 | Hạng mục | Số lượng |
 |---|---|
@@ -95,5 +104,6 @@
 | Fail | 34 (DT: 25, BV: 9) |
 | Chưa thực thi | 0 |
 | Bug phân biệt (nguyên nhân gốc) | **11** (BUG-01 … BUG-11, xem `06_bugs.md`) |
+| Test khám phá thêm | 4 (X-01..X-04), không có bug mới |
 
 Nhiều test cùng Fail do một nguyên nhân gốc (ví dụ các test rollback đều do BUG-01), nên số bug nhỏ hơn số test Fail.

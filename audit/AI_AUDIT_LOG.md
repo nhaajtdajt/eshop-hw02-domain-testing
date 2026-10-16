@@ -333,3 +333,23 @@ evidence/run_api_tests.js + api_results.json (39 API checks: 17 pass, 22 fail), 
 ~~~
 
 ---
+
+## Entry 017 — FR-16 — 05 AI gap analysis
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 14:22:54
+- **Human review / changes:** AI tự đánh giá chính mình nên có nguy cơ thiên vị; bám bằng chứng cụ thể (X-01..X-04, tên sản phẩm FR16-1..3 ở lần chạy sai, mã 413). G4 và G5 chưa test — ghi rõ thay vì giả vờ đã phủ. Người dùng cần đọc lại và phản biện các nhóm nguyên nhân trước khi nộp.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 5 - AI gap analysis): Compare the first-pass design (steps 1-3) with the final set after execution for FR-16. List what the AI missed or got wrong, how it was found, cause group (Prompt / Tool limitation / Feature complexity), explanation and a skill change; add exploratory checks for realistic real-world file variants. State what the AI got right.
+~~~
+
+**AI output**
+
+~~~text
+05_ai_gap.md with 6 gaps: G1 real-world CSV variants (semicolon delimiter from Vietnamese Excel, BOM, blank line, padded spaces) -> X-01..X-04; G2 my UI harness did not wait for the async FileReader preview (DT-02 first run invalid); G3 BV-18 payload exceeded 100 KB so a 413 hid the atomicity check; G4 duplicates not designed; G5 thousand-separator prices not designed; G6 'DB unchanged' criterion ignores the misleading green banner (DT-16). Added exploratory results to 04_execution.md and evidence/ui_exploratory.json.
+~~~
+
+---
