@@ -24,3 +24,25 @@ Produced features/FR-03/01_analysis.md: quoted spec for FR-03/FR-01/FR-22/SEC-07
 ~~~
 
 ---
+
+## Entry 002 — FR-03 — 02 Domain testing
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 13:24:52
+- **Human review / changes:** Đối chiếu từng expected với SRS: không lấy expected từ code (ví dụ OTP là 6 số theo spec chứ không phải 4 như code). Gắn nhãn EC-pw-I7 ('#') là diễn giải chặt vì FR-01 liệt kê tập ký tự. Thêm DT-13 (OTP của email khác), DT-14 (dùng lại OTP), DT-15 (hết hạn) vì SRS/SEC-07 nêu rõ. Gom GUI thành nhóm riêng vì FR-22 yêu cầu.
+
+**Prompt**
+
+~~~text
+Step prompt per skill (Step 2 - Domain Testing), input = features/FR-03/01_analysis.md + SRS FR-03/FR-01/FR-22/SEC-07:
+(a) For each input (email, otp, newPassword, confirmPassword) and for GUI requirements, partition the domain into valid and invalid equivalence classes with codes EC-<input>-V<n>/I<n>.
+(b) Combine into test cases: valid tests cover many valid classes at once; every invalid test contains exactly ONE invalid class with all other inputs valid. Expected results come from the SRS, not from code. Mark whether each test runs on UI, API or both. Add a class->test traceability table.
+~~~
+
+**AI output**
+
+~~~text
+Produced features/FR-03/02_domain_testing.md: classes email(1 valid+5 invalid), otp(1+8: empty, <6, >6, non-digit, wrong value, other email's OTP, already used, expired), newPassword(1+7 following FR-01), confirmPassword(1+3), GUI(7). 32 test cases FR03-DT-01..32 with expected results from SRS, layer (UI/API), traceability table; limitations: OTP lifetime not quantified in SRS, confirm-password tests UI-only, '#' special char is an interpretation issue.
+~~~
+
+---
