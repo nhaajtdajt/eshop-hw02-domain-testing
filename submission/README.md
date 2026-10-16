@@ -65,6 +65,7 @@ README.md                                  <- file này
 03_AI/AI_Critique_23120231.md/.pdf             AI Critique (289 từ)
 03_AI/AI_Audit_Report_23120231.md/.pdf         AI Audit Report (+ audit/AI_AUDIT_LOG.md gốc)
 04_Git_log/git_commit_log.txt                  git commit log dạng text
+05_Templates_AI/                               [AI-02] Audit Report, [AI-03] Disclosure Form, [AI-05] Privacy Checklist, [AI-06] Acknowledgement
 features/                                      tài liệu chi tiết, script test, bằng chứng của 4 feature
 skills/domain-testing-bva/                     Agent Skill (SKILL.md, references, scripts)
 audit/AI_AUDIT_LOG.md                          nhật ký từng lần dùng AI
@@ -73,6 +74,10 @@ audit/AI_AUDIT_LOG.md                          nhật ký từng lần dùng AI
 ## 6. Khai báo sử dụng AI
 
 Tôi sử dụng công cụ AI cho các việc sau: **Claude Code (Sonnet 5.5, `claude-sonnet-5-5`)** hỗ trợ từng bước của quy trình kiểm thử (phân tích spec, chia lớp tương đương, phân tích biên, viết script chạy test, tổng hợp kết quả, viết báo cáo). Không dùng công cụ sinh test khác (ví dụ Diffblue). Mọi kết quả AI đều được đối chiếu với SRS và bằng chứng chạy thật; chi tiết prompt, output và phần người review đã sửa nằm trong `03_AI/AI_Audit_Report_23120231.md`.
+
+## 6b. Biểu mẫu AI của môn (thư mục `05_Templates_AI/`)
+
+Theo quy định chung của môn (đề HW01: mọi bài có dùng AI phải kèm các mẫu này): **[AI-02]** Audit Report (27 artifact, mỗi artifact 5 mục; VALID 13 / INVALID 0 / INCOMPLETE 14), **[AI-03]** Disclosure Form, **[AI-05]** Privacy Checklist, **[AI-06]** Student Acknowledgement (bản đã ký từ HW01). Báo cáo chính có thêm các mục "AI Audit Report", "AI Critique" và "Mandatory Disclosure" ở cuối. **Ô chữ ký để trống và các chỗ ghi `[SINH VIÊN ĐIỀN]` / `[SV tự tick]` là phần chỉ sinh viên xác nhận được — cần điền và ký trước khi nộp.**
 
 ## 7. Hạn chế và những điều chưa làm
 

@@ -7,8 +7,9 @@
 | Công cụ AI | Claude Code (mô hình Sonnet 5.5, `claude-sonnet-5-5`) chạy trong ứng dụng Claude desktop |
 | Công cụ khác | Không dùng ChatGPT/Gemini/Copilot/Cursor; không dùng công cụ sinh test (ví dụ Diffblue) |
 | Nhiệm vụ dùng AI | Phân tích spec và code, chia lớp tương đương, phân tích biên, viết script chạy test, chạy thử UI/API, tổng hợp kết quả, viết báo cáo/bug report/AI gap, tạo và chỉnh Agent Skill |
-| Số lần ghi nhận | 25 mục (mỗi bước của mỗi feature một mục) |
+| Số lần ghi nhận | 26 mục (mỗi bước của mỗi feature một mục) |
 | Người review | Sinh viên đối chiếu mọi kết quả với SRS và bằng chứng chạy thật; ô "Human review / changes" của từng mục ghi phần đã sửa |
+| Tỉ lệ chính xác của AI | 27 artifact: VALID 13 (48%), INVALID 0 (0%), INCOMPLETE 14 (52%) — theo mẫu 5 mục trong `05_Templates_AI/[AI-02] AI Audit Report - 23120231.docx` |
 
 ## Cách ghi nhật ký
 Mỗi mục gồm: tên công cụ, ngày giờ (từ đồng hồ máy khi ghi), prompt, output, phần người review đã chỉnh. Nhật ký được ghi ngay sau mỗi bước bằng `skills/domain-testing-bva/scripts/append_audit.py`. Vì AI chạy ngay trong phiên làm việc, "prompt" của mỗi bước gồm yêu cầu gốc của sinh viên và prompt bước theo skill; "output" là tóm tắt tài liệu/kết quả AI tạo ra (toàn văn nằm trong các file `features/*/0x_*.md`).
@@ -42,6 +43,7 @@ Mỗi mục gồm: tên công cụ, ngày giờ (từ đồng hồ máy khi ghi)
 | 023 | Mobile-FR-08/09 | 05 AI gap analysis | 2026-10-16 14:40:51 |
 | 024 | Mobile-FR-08/09 | 06 Bug report | 2026-10-16 14:41:44 |
 | 025 | Submission | 07 Submission package | 2026-10-16 15:28:58 |
+| 026 | Submission | 08 AI templates | 2026-10-16 17:05:16 |
 
 ## Phụ lục: toàn bộ nhật ký (nguyên văn `audit/AI_AUDIT_LOG.md`)
 
@@ -557,6 +559,27 @@ Task: assemble the HW02 submission from the per-feature documents (features/*/0x
 
 ~~~text
 submission/README.md (self-assessment 22/22/22/11/5 = 82, test summary 256 designed / 154 pass / 102 fail / 36 bugs, limitations, no demo video yet); submission/build_submission.py (assembles 01_BaoCao_chinh, 02_BugReport with embedded screenshots, 03_AI audit report, 04_Git_log and the zip 23120231_HW02_AI_DomainTesting_082.zip; PDFs via Edge headless); 03_AI/AI_Critique_23120231.md (289 words). PDF rendering issues fixed during the build: list parsing, nested lists, fenced code inside list items.
+~~~
+
+---
+
+### Entry 026 — Submission — 08 AI templates
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 17:05:16
+- **Human review / changes:** Phát hiện từ đề HW01 rằng bài có dùng AI phải kèm [AI-02], [AI-03], [AI-05] và [AI-06]; đề HW02 chỉ nói 'dùng nội dung template nếu cần' nên làm bổ sung cho an toàn. Mọi khẳng định về việc sinh viên đã rà soát/ký đều để trống hoặc đánh dấu để sinh viên điền; verdict VALID/INCOMPLETE là đánh giá của AI dựa trên 05_ai_gap.md, sinh viên cần soát lại.
+
+**Prompt**
+
+~~~text
+User instruction (verbatim, Vietnamese): "cd ra thư mục lớn đọc lại file bài nộp đợi trước có các template hay yêu cầu gì ấy bạn làm bổ sung vào cho tôi luôn thử nếu nó cần"
+Task: read the HW01 submission (NOP_BAI_23120231_HW01, README, template folder, HW01 requirement md) to find the course-level AI requirements; fill [AI-02] Audit Report (5 sections per artifact), [AI-03] Disclosure Form and [AI-05] Privacy Checklist for HW02 from the blank templates, reuse the signed [AI-06], add AI audit accuracy ratio, AI Critique and Mandatory Disclosure to the main report. Leave signatures and student-only attestations blank/marked.
+~~~
+
+**AI output**
+
+~~~text
+submission/build_templates.py generating submission/05_Templates_AI/[AI-02] (27 artifacts: VALID 13, INVALID 0, INCOMPLETE 14), [AI-03], [AI-05] and a copy of the signed [AI-06]; build_submission.py extended with report sections 10 (AI Audit summary with accuracy ratio and when to use AI), 11 (AI Critique), 12 (Mandatory Disclosure); README section 6b. Fields only the student can attest are marked [SINH VIÊN ĐIỀN] / [SV tự tick]; signature cells left empty.
 ~~~
 
 ---

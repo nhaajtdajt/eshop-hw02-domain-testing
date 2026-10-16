@@ -517,3 +517,24 @@ submission/README.md (self-assessment 22/22/22/11/5 = 82, test summary 256 desig
 ~~~
 
 ---
+
+## Entry 026 — Submission — 08 AI templates
+
+- **AI tool:** Claude Code (Sonnet 5.5, claude-sonnet-5-5)
+- **Date/time:** 2026-10-16 17:05:16
+- **Human review / changes:** Phát hiện từ đề HW01 rằng bài có dùng AI phải kèm [AI-02], [AI-03], [AI-05] và [AI-06]; đề HW02 chỉ nói 'dùng nội dung template nếu cần' nên làm bổ sung cho an toàn. Mọi khẳng định về việc sinh viên đã rà soát/ký đều để trống hoặc đánh dấu để sinh viên điền; verdict VALID/INCOMPLETE là đánh giá của AI dựa trên 05_ai_gap.md, sinh viên cần soát lại.
+
+**Prompt**
+
+~~~text
+User instruction (verbatim, Vietnamese): "cd ra thư mục lớn đọc lại file bài nộp đợi trước có các template hay yêu cầu gì ấy bạn làm bổ sung vào cho tôi luôn thử nếu nó cần"
+Task: read the HW01 submission (NOP_BAI_23120231_HW01, README, template folder, HW01 requirement md) to find the course-level AI requirements; fill [AI-02] Audit Report (5 sections per artifact), [AI-03] Disclosure Form and [AI-05] Privacy Checklist for HW02 from the blank templates, reuse the signed [AI-06], add AI audit accuracy ratio, AI Critique and Mandatory Disclosure to the main report. Leave signatures and student-only attestations blank/marked.
+~~~
+
+**AI output**
+
+~~~text
+submission/build_templates.py generating submission/05_Templates_AI/[AI-02] (27 artifacts: VALID 13, INVALID 0, INCOMPLETE 14), [AI-03], [AI-05] and a copy of the signed [AI-06]; build_submission.py extended with report sections 10 (AI Audit summary with accuracy ratio and when to use AI), 11 (AI Critique), 12 (Mandatory Disclosure); README section 6b. Fields only the student can attest are marked [SINH VIÊN ĐIỀN] / [SV tự tick]; signature cells left empty.
+~~~
+
+---
